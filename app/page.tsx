@@ -1,0 +1,46 @@
+
+import BeforeAfterSliderdrag from "@/components/drag";
+import FAQ from "@/components/faq";
+import ContactFooterReplica from "@/components/footer";
+import AdvertisementBanner from "@/components/hairtrans";
+import GrohairTopBar from "@/components/header";
+import AdGloHeroReplica from "@/components/hero-section";
+import GloskinHighlightSection from "@/components/logoslider";
+import HairTreatmentsGrid from "@/components/results-section";
+import HairConsultationCardExact from "@/components/skinpopup";
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-background">
+      {/* <RedTopAnnouncementBar /> */}
+      <GrohairTopBar />
+
+      <section id="hero">
+        <AdGloHeroReplica />
+      </section>
+      <AdvertisementBanner />
+   
+
+      <HairConsultationCardExact />
+      <HairTreatmentsGrid />
+      {/* <section id="why">
+        <ImageCarouselGrid />
+      </section> */}
+
+
+      <GloskinHighlightSection />
+{/* <TestimonialCard /> */}
+<BeforeAfterSliderdrag />
+      <section id="faq">
+        <FAQ />
+      </section>
+      {/* <section id="services">
+        <SimpleMap />
+      </section> */}
+
+        {/* <AppointmentFormnew /> */}
+
+      <ContactFooterReplica />
+    </main>
+  );
+}
