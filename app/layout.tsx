@@ -12,7 +12,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Advanced GroHair - Velachery",
   description:
-    "Reclaim Confidence With Revolutionary Hair Restoration Now at Velachery",
+    "Unlock Remarkable Hair Results and Turn Heads Like Never Before",
   generator: 'Nextjs15',
   icons: {
     icon: [

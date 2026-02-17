@@ -211,7 +211,7 @@ const RequestCallbackSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="mt-2 sm:mt-3 bg-[#e53935] hover:bg-[#d32f2f] transition text-white py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-base font-semibold w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="mt-2 sm:mt-3 bg-[#e53935] hover:bg-[#d32f2f] cursor-pointer transition text-white py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-base font-semibold w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
@@ -328,7 +328,7 @@ const RequestCallbackSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="mt-3 bg-[#e82625] hover:bg-[#e82625] transition text-white py-4 px-8 rounded-full text-base font-semibold w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="mt-3 bg-[#e82625] hover:bg-[#e82625] cursor-pointer transition text-white py-4 px-8 rounded-full text-base font-semibold w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
