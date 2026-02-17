@@ -11,7 +11,7 @@ const WhoWeAreSection = () => {
           {/* IMAGE */}
           <div className="w-full h-[250px] sm:h-[320px] md:h-[380px] lg:h-[450px] overflow-hidden rounded-[24px] sm:rounded-[28px] md:rounded-[32px] lg:rounded-[36px] shadow-xl">
             <img
-              src="/Logo-Box.png"
+              src="/whyinvela.jpg"
               alt="Advanced Grohair Team"
               className="w-full h-full object-cover"
             />
