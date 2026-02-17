@@ -18,16 +18,16 @@ export default function Home() {
       <section id="hero">
         <AdGloHeroReplica />
       </section>
-      <AdvertisementBanner />
+    <HairTreatmentsGrid />
    
 
       <HairConsultationCardExact />
-      <HairTreatmentsGrid />
+    
       {/* <section id="why">
         <ImageCarouselGrid />
       </section> */}
 
-
+    <AdvertisementBanner />
       <GloskinHighlightSection />
 {/* <TestimonialCard /> */}
 <BeforeAfterSliderdrag />
