@@ -47,7 +47,7 @@ const IVFHeroExact = () => {
   };
 
   return (
-   <section className="w-full py-20 max-[470px]:py-4 bg-gradient-to-r from-[#f9fafb] to-[#fef2f2] flex items-center">
+   <section className="w-full py-14 max-[470px]:py-4 bg-gradient-to-r from-[#f9fafb] to-[#fef2f2] flex items-center">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-[100px] items-center py-8 max-[470px]:py-4 md:py-0">
 
         {/* LEFT CONTENT - Desktop */}
