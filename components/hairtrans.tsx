@@ -204,7 +204,7 @@ const BeforeAfterSection = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
-        className="w-full bg-white py-12 max-[470px]:py-8 md:py-16 overflow-hidden"
+        className="w-full bg-white py-10 max-[470px]:py-6 md:py-10 overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Section Header */}

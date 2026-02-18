@@ -1,75 +1,259 @@
-import React from "react";
-
-const testimonials = [
-  {
-    text: `I had always struggled with thinning hair, and it affected my confidence. After hearing about Adgro Hair Ambattur, I decided to take the plunge and try their hair transplant services. From the moment I walked into the clinic, I was impressed with the professionalism and care of the team. The procedure was smooth, and the results were life-changing! My hair looks fuller, and I feel more confident than ever. Thank you, Adgro Hair Ambattur, for helping me reclaim my confidence!`,
-    name: "- S. R. Vishwa Rajan",
-    image: "/Before-After-2amba.jpg",
-  },
-  {
-    text: `I had tried every hair growth product out there with no success, and I was losing hope. Then I found Adgro Hair Ambattur and decided to give their hair transplant a chance. The staff made me feel at ease from the consultation to the procedure. The results have been amazing—my hair looks natural and thick again! I couldn't be happier with the transformation. Thanks to Adgro Hair Ambattur, I'm finally feeling like myself again!`,
-    name: "- Adhil Ashik",
-    image: "/Before-After-6amba.jpg",
-  },
-];
-
-const TestimonialCard = () => {
+'use client'
+ 
+import React, { useState, useRef } from 'react';
+ 
+const ClinicVideosResponsiveGrid = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+ 
+  const handleCallNow = () => {
+    window.location.href = 'tel:+1234567890';
+  };
+ 
+  const videos = [
+    {
+      id: 1,
+      title: "Doctor Explaining Hair Loss Evaluation",
+      videoUrl: "/one.mp4", // 🔁 Replace with your actual video path
+      duration: "5:30"
+    },
+    {
+      id: 2,
+      title: "Regenera Activa Treatment Overview",
+      videoUrl: "/two.mp4", // 🔁 Replace with your actual video path
+      duration: "8:45"
+    },
+    {
+      id: 3,
+      title: "In-Clinic Hair Treatment Process",
+      videoUrl: "/three.mp4", // 🔁 Replace with your actual video path
+      duration: "6:15"
+    },
+    {
+      id: 4,
+      title: "Patient Consultation Experience",
+      videoUrl: "/four.mp4", // 🔁 Replace with your actual video path
+      duration: "4:45"
+    },
+    {
+      id: 5,
+      title: "Advanced Hair Restoration Techniques",
+      videoUrl: "/five.mp4", // 🔁 Replace with your actual video path
+      duration: "7:20"
+    },
+    {
+      id: 6,
+      title: "Post-Treatment Care Guidelines",
+      videoUrl: "/six.mp4", // 🔁 Replace with your actual video path
+      duration: "5:50"
+    }
+  ];
+ 
+  const pauseAllVideos = () => {
+    videoRefs.current.forEach((ref) => {
+      if (ref) ref.pause();
+    });
+  };
+ 
+  const nextSlide = () => {
+    pauseAllVideos();
+    setCurrentSlide((prev) => (prev + 1) % Math.ceil(videos.length / 3));
+  };
+ 
+  const prevSlide = () => {
+    pauseAllVideos();
+    setCurrentSlide((prev) => (prev - 1 + Math.ceil(videos.length / 3)) % Math.ceil(videos.length / 3));
+  };
+ 
+  const goToSlide = (index: number) => {
+    pauseAllVideos();
+    setCurrentSlide(index);
+  };
+ 
+  // Calculate number of slides needed (3 videos per slide)
+  const totalSlides = Math.ceil(videos.length / 3);
+  
+  // Create slides array
+  const slides = [];
+  for (let i = 0; i < totalSlides; i++) {
+    slides.push(videos.slice(i * 3, i * 3 + 3));
+  }
+ 
   return (
-    <div className="w-full max-w-8xl py-10 max-[470px]:py-6 mx-auto px-4 sm:px-6 lg:px-8">
-      {/* HEADER SECTION */}
-      <div className="text-center mb-8 sm:mb-10 md:mb-12">
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[36px] font-semibold text-[#e82625] mb-2 sm:mb-3 md:mb-4 px-2 sm:px-4">
-          Discover Why We’re the Trusted Choice of Many!
-        </h2>
-      </div>
-
-      {/* TESTIMONIAL CARDS */}
-      <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-6 lg:gap-8">
-        {testimonials.map((item, index) => (
-          <div
-            key={index}
-            className="w-full sm:w-[90%] md:w-[80%] lg:w-[calc(50%-1rem)] xl:w-[calc(50%-1.5rem)] max-w-2xl bg-white rounded-xl border border-gray-200 p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col sm:flex-row items-start gap-4 sm:gap-5 md:gap-6 shadow-sm hover:shadow-md transition-shadow duration-300 h-auto"
-          >
-            {/* LEFT CONTENT - full height flex column */}
-            <div className="flex-1 order-2 sm:order-1 w-full flex flex-col h-full">
-              <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed flex-1">
-                {item.text}
-              </p>
-
-              {/* NAME - sticks to bottom */}
-              <div className="mt-auto">
-                <p className="mt-3 sm:mt-4 font-semibold text-gray-900 text-xs sm:text-sm md:text-base">
-                  {item.name}
-                </p>
-
-                {/* STARS */}
-                <div className="flex items-center gap-0.5 sm:gap-1 mt-1 sm:mt-2">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-orange-400 fill-current"
-                      viewBox="0 0 20 20"
+    <section className="py-8 sm:py-10 md:py-10 lg:py-10 max-[470px]:py-6 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24">
+      <div className="max-w-7xl mx-auto">
+ 
+        {/* Section Header */}
+        <div className="text-center mb-6 sm:mb-8 md:mb-5 lg:mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-4xl font-bold text-gray-900 leading-tight mb-3 sm:mb-4">
+            Videos from Our Clinic
+          </h2>
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto px-4">
+            Watch our expert doctors explain treatments and see our clinic procedures firsthand
+          </p>
+        </div>
+ 
+        {/* ─── MOBILE CAROUSEL (< lg) ─── */}
+        <div className="lg:hidden relative mb-8 sm:mb-10">
+          <div className="relative w-full">
+            <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl bg-black">
+              {videos.map((video, index) => (
+                <div
+                  key={video.id}
+                  className={`transition-all duration-700 ease-in-out ${
+                    index === currentSlide
+                      ? 'opacity-100 relative'
+                      : 'opacity-0 absolute inset-0 pointer-events-none'
+                  }`}
+                >
+                  {/* Video — Increased height for mobile */}
+                  <div 
+                    className="relative w-full bg-black" 
+                    style={{ 
+                      height: '650px' // Increased from 300px to 450px
+                    }}
+                  >
+                    <video
+                      ref={(el) => { videoRefs.current[index] = el; }}
+                      src={video.videoUrl}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      controls
+                      preload="metadata"
+                      playsInline
                     >
-                      <path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z" />
-                    </svg>
-                  ))}
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            {/* RIGHT IMAGE - responsive sizing */}
-            <div className="flex-shrink-0 order-1 sm:order-2 mx-auto sm:mx-0 self-start sm:self-start">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-32 h-36 sm:w-36 sm:h-40 md:w-40 md:h-44 lg:w-48 lg:h-56 xl:w-52 max-[470px]:w-[250px] xl:h-60 object-cover rounded-lg"
-              />
+              ))}
             </div>
           </div>
-        ))}
+ 
+          {/* Prev / Next Arrows for Mobile */}
+          {videos.length > 1 && (
+            <>
+              <button
+                onClick={prevSlide}
+                className="absolute left-2 sm:left-4 top-[45%] -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-[#e82625] transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-110 z-20"
+                style={{ backgroundColor: '#f3eeed' }}
+                aria-label="Previous video"
+              >
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+ 
+              <button
+                onClick={nextSlide}
+                className="absolute right-2 sm:right-4 top-[45%] -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-[#e82625] transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-110 z-20"
+                style={{ backgroundColor: '#f3eeed' }}
+                aria-label="Next video"
+              >
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </>
+          )}
+ 
+ 
+        </div>
+ 
+        {/* ─── DESKTOP CAROUSEL (lg+) — 3 videos per row ─── */}
+        <div className="hidden lg:block mb-10 lg:mb-12">
+          <div className="relative">
+            {/* Slides Wrapper */}
+            <div className="overflow-hidden rounded-2xl">
+              <div
+                className="flex transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {/* Map through slides array (each slide contains 3 videos) */}
+                {slides.map((slideVideos, slideIndex) => (
+                  <div
+                    key={slideIndex}
+                    className="min-w-full grid grid-cols-3 gap-6 xl:gap-8"
+                  >
+                    {slideVideos.map((video, videoIndex) => (
+                      <div
+                        key={video.id}
+                        className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
+                      >
+                        {/* Video — 600px height for desktop */}
+                        <div className="relative w-full bg-black" style={{ height: '600px' }}>
+                          <video
+                            ref={(el) => { 
+                              // Calculate proper index for videoRefs
+                              const globalIndex = slideIndex * 3 + videoIndex + videos.length;
+                              videoRefs.current[globalIndex] = el; 
+                            }}
+                            src={video.videoUrl}
+                            className="absolute inset-0 w-full h-full object-cover"
+                            controls
+                            preload="metadata"
+                            playsInline
+                          >
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+ 
+            {/* Desktop Prev / Next Arrows (visible when more than 3 videos) */}
+            {videos.length > 3 && (
+              <>
+                <button
+                  onClick={prevSlide}
+                  className="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center text-[#e82625] transition-all duration-300 shadow-xl hover:scale-110 z-20"
+                  style={{ backgroundColor: '#f3eeed' }}
+                  aria-label="Previous"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center text-[#e82625] transition-all duration-300 shadow-xl hover:scale-110 z-20"
+                  style={{ backgroundColor: '#f3eeed' }}
+                  aria-label="Next"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
+            
+          </div>
+        </div>
+ 
+        {/* ─── CTAs (commented out as in original) ─── */}
+        {/* <div className="flex sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6">
+          <button
+            className="group flex border border-black items-center justify-center gap-2 sm:gap-3 text-black font-bold px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-3.5 md:py-4 rounded-lg transition-all duration-300 hover:brightness-110 shadow-lg hover:shadow-xl hover:scale-105 text-sm sm:text-base md:text-lg w-full sm:w-auto max-w-xs sm:max-w-none"
+            onClick={() => setIsBookingModalOpen(true)}
+          >
+            <span>Book Now</span>
+          </button>
+ 
+          <a
+            href="tel:+919876543210"
+            className="group flex items-center justify-center gap-2 sm:gap-3 text-white font-bold px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-3.5 md:py-4 rounded-lg transition-all duration-300 hover:brightness-110 shadow-lg hover:shadow-xl hover:scale-105 text-sm sm:text-base md:text-lg w-full sm:w-auto max-w-xs sm:max-w-none"
+            style={{ backgroundColor: '#9B7057' }}
+            onClick={handleCallNow}
+          >
+            <span>Call Now</span>
+          </a>
+        </div> */}
       </div>
-    </div>
+    </section>
   );
 };
-
-export default TestimonialCard;
+ 
+export default ClinicVideosResponsiveGrid;

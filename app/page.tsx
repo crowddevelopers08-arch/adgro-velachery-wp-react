@@ -7,6 +7,7 @@ import GrohairTopBar from "@/components/header";
 import AdGloHeroReplica from "@/components/hero-section";
 import GloskinHighlightSection from "@/components/logoslider";
 import HairTreatmentsGrid from "@/components/results-section";
+import TestimonialCard from "@/components/review";
 import HairConsultationCardExact from "@/components/skinpopup";
 
 export default function Home() {
@@ -28,8 +29,9 @@ export default function Home() {
       </section> */}
 
     <AdvertisementBanner />
+    <TestimonialCard />
       <GloskinHighlightSection />
-{/* <TestimonialCard /> */}
+
 <BeforeAfterSliderdrag />
       <section id="faq">
         <FAQ />
