@@ -79,7 +79,7 @@ const Footer = () => {
 
           {/* COPYRIGHT */}
           <p className="text-sm text-gray-400 text-center md:text-left">
-            © 2023 Adgro Hair Velachery. All rights reserved. Powered by{" "}
+            © 2026 Adgro Hair Velachery. All rights reserved. Powered by{" "}
             <span className="text-[#e82625] font-medium">Crowd Developers</span>
           </p>
 
