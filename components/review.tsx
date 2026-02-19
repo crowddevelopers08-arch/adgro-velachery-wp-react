@@ -21,7 +21,7 @@ const ClinicVideosResponsiveGrid = () => {
     {
       id: 2,
       title: "Regenera Activa Treatment Overview",
-      videoUrl: "/two.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "/five.mp4", // 🔁 Replace with your actual video path
       duration: "8:45"
     },
     {
@@ -39,7 +39,7 @@ const ClinicVideosResponsiveGrid = () => {
     {
       id: 5,
       title: "Advanced Hair Restoration Techniques",
-      videoUrl: "/five.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "/two.mp4", // 🔁 Replace with your actual video path
       duration: "7:20"
     },
     {
