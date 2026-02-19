@@ -7,19 +7,29 @@ const Creative = () => {
   
   const images = [
     {
-      src: "/wat1.jpeg",
+      src: "/n2.jpg",
       alt: "Hair Transplant Results - Before and After - Case 1",
-      technique: "FUE Technique"
+      technique: "Advanced Hair Transplant"
     },
     {
-      src: "/wat2.jpeg",
+      src: "/n4.jpg",
       alt: "Hair Transplant Results - Before and After - Case 2",
-      technique: "DHI Technique"
+      technique: "Advanced Hair Transplant"
     },
     {
-      src: "/wat3.jpeg",
+      src: "/n1.jpg",
       alt: "Hair Transplant Results - Before and After - Case 3",
-      technique: "Sapphire FUE"
+      technique: "Advanced Hair Transplant"
+    },
+        {
+      src: "/n3.jpg",
+      alt: "Hair Transplant Results - Before and After - Case 2",
+      technique: "Advanced Hair Transplant"
+    },
+    {
+      src: "/n5.jpg",
+      alt: "Hair Transplant Results - Before and After - Case 3",
+      technique: "Advanced Hair Transplant"
     }
   ];
 
@@ -92,11 +102,11 @@ const Creative = () => {
           </div>
         </div>
         
-        {/* Right Section - Carousel */}
+        {/* Right Section - Carousel with increased height */}
         <div className="flex-1 flex justify-center lg:justify-end items-center w-full max-w-md lg:max-w-lg">
-          <div className="relative w-full max-w-[300px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[420px]">
-            {/* Image Carousel - Slightly increased heights */}
-            <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[240px]">
+          <div className="relative w-full max-w-[320px] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[450px]">
+            {/* Image Carousel - Significantly increased heights */}
+            <div className="relative w-full h-[320px] sm:h-[360px] md:h-[400px] lg:h-[440px]">
               {images.map((image, index) => (
                 <div
                   key={index}
@@ -110,13 +120,13 @@ const Creative = () => {
                     fill
                     className="object-cover rounded-lg shadow-2xl"
                     priority={index === 0}
-                    sizes="(max-width: 470px) 300px, (max-width: 640px) 340px, (max-width: 768px) 380px, 420px"
+                    sizes="(max-width: 470px) 320px, (max-width: 640px) 360px, (max-width: 768px) 400px, 450px"
                   />
                 </div>
               ))}
             </div>
             
-            {/* Dynamic Technique Badge */}
+            {/* Dynamic Technique Badge - Adjusted position for larger image */}
             <div className="absolute -top-3 -right-3 bg-[#e82625] text-white text-xs sm:text-sm font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-lg transition-opacity duration-500">
               {images[currentImageIndex].technique}
             </div>
