@@ -130,7 +130,7 @@ const ClinicVideosResponsiveGrid = () => {
                         key={video.id}
                         className="bg-white rounded-xl overflow-hidden"
                       >
-                        <div className="relative w-full bg-black" style={{ height: '500px' }}>
+                        <div className="relative w-full bg-black" style={{ height: '600px' }}>
                           <video
                             ref={(el) => {
                               const globalIndex = slideIndex;
