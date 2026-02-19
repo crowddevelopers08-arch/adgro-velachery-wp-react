@@ -34,7 +34,7 @@ const Creative = () => {
   }, [images.length]);
 
   return (
-    <div className="relative my-20 mt-10 w-full max-w-6xl max-[470px]:mt-0 mx-auto bg-white p-4 sm:p-5 md:p-6 rounded-lg md:rounded-xl overflow-hidden"
+    <div className="relative my-20 mt-10 max-[470px]:my-6 w-full max-w-6xl max-[470px]:mt-0 mx-auto bg-white p-4 sm:p-5 md:p-6 rounded-lg md:rounded-xl overflow-hidden"
          style={{
            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08), 0 -4px 20px rgba(0, 0, 0, 0.08), 4px 0 20px rgba(0, 0, 0, 0.08), -4px 0 20px rgba(0, 0, 0, 0.08)'
          }}>
