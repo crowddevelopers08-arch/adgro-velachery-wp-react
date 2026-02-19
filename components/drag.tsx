@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const CONCERN_OPTIONS = [
   "Hair Loss",
@@ -13,6 +14,7 @@ const CONCERN_OPTIONS = [
 ];
 
 const RequestCallbackSection = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -95,18 +97,8 @@ const RequestCallbackSection = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setSubmitStatus({
-          type: 'success',
-          message: 'Thank you! We will call you back shortly.'
-        });
-        // Reset form
-        setFormData({
-          name: "",
-          phone: "",
-          email: "",
-          concerns: [],
-          city: "",
-        });
+        // Redirect to thank you page on success
+        router.push('/thank-you');
       } else {
         throw new Error(data.error || 'Failed to submit form');
       }
@@ -115,7 +107,6 @@ const RequestCallbackSection = () => {
         type: 'error',
         message: error instanceof Error ? error.message : 'Something went wrong. Please try again.'
       });
-    } finally {
       setIsSubmitting(false);
     }
   };
