@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-const AdvertisementBanner = () => {
+const Creative = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const images = [
@@ -34,7 +34,10 @@ const AdvertisementBanner = () => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full max-w-6xl mt-10 max-[470px]:mt-0 mx-auto bg-gradient-to-br from-[#0f0505] via-[#1f0a0a] to-[#e82625] p-4 sm:p-5 md:p-6 rounded-lg md:rounded-xl shadow-lg md:shadow-xl overflow-hidden">
+    <div className="relative my-20 mt-10 w-full max-w-6xl max-[470px]:mt-0 mx-auto bg-white p-4 sm:p-5 md:p-6 rounded-lg md:rounded-xl overflow-hidden"
+         style={{
+           boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08), 0 -4px 20px rgba(0, 0, 0, 0.08), 4px 0 20px rgba(0, 0, 0, 0.08), -4px 0 20px rgba(0, 0, 0, 0.08)'
+         }}>
       
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 md:gap-10">
         
@@ -47,39 +50,39 @@ const AdvertisementBanner = () => {
             </div>
           </div>
           
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#202020] leading-tight">
             Hair Transplant
           </h1>
           
-          <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-xl">
+          <p className="text-sm sm:text-base md:text-lg text-[#202020]/80 max-w-xl">
             Consider investing in a permanent, hassle-free solution with our hair transplantation procedure. Our advanced techniques ensure natural-looking results with minimal scarring and downtime.
           </p>
           
           <div className="flex flex-wrap gap-3 pt-2">
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-full bg-[#e82625]/20 flex items-center justify-center">
+              <div className="w-5 h-5 rounded-full bg-[#e82625]/10 flex items-center justify-center">
                 <div className="w-2 h-2 rounded-full bg-[#e82625]"></div>
               </div>
-              <span className="text-white text-sm">FUE & DHI Techniques</span>
+              <span className="text-[#202020] text-sm">FUE & DHI Techniques</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-full bg-[#e82625]/20 flex items-center justify-center">
+              <div className="w-5 h-5 rounded-full bg-[#e82625]/10 flex items-center justify-center">
                 <div className="w-2 h-2 rounded-full bg-[#e82625]"></div>
               </div>
-              <span className="text-white text-sm">No Linear Scar</span>
+              <span className="text-[#202020] text-sm">No Linear Scar</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-full bg-[#e82625]/20 flex items-center justify-center">
+              <div className="w-5 h-5 rounded-full bg-[#e82625]/10 flex items-center justify-center">
                 <div className="w-2 h-2 rounded-full bg-[#e82625]"></div>
               </div>
-              <span className="text-white text-sm">3-5 Days Recovery</span>
+              <span className="text-[#202020] text-sm">3-5 Days Recovery</span>
             </div>
           </div>
           
           {/* CTA Button */}
           <div className="pt-4">
             <a href="#form">
-              <button className="bg-white text-[#e82625] font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors shadow-lg text-sm sm:text-base inline-flex items-center gap-2 group">
+              <button className="bg-[#e82625] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#c41e1d] transition-colors shadow-lg text-sm sm:text-base inline-flex items-center gap-2 group">
                 <span>Book Consultation</span>
                 <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -122,21 +125,37 @@ const AdvertisementBanner = () => {
       </div>
       
       {/* Bottom Banner */}
-      <div className="relative z-10 mt-6 sm:mt-8 pt-4 border-t border-white/20">
+      <div className="relative z-10 mt-6 sm:mt-8 pt-4 border-t border-[#202020]/10">
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          <p className="text-white/90 text-xs sm:text-sm font-medium">
+          <p className="text-[#202020]/80 text-xs sm:text-sm font-medium">
             Adgro Ambattur | Chennai
           </p>
-          <p className="text-white/90 text-xs sm:text-sm font-medium flex items-center gap-1">
+          <p className="text-[#202020]/80 text-xs sm:text-sm font-medium flex items-center gap-1">
             <span className="text-[#e82625]">✓</span> Free Consultation
           </p>
-          <p className="text-white/90 text-xs sm:text-sm font-medium flex items-center gap-1">
+          <p className="text-[#202020]/80 text-xs sm:text-sm font-medium flex items-center gap-1">
             <span className="text-[#e82625]">✓</span> EMI Available
           </p>
         </div>
+      </div>
+      
+      {/* Carousel Indicators */}
+      <div className="flex justify-center gap-2 mt-4">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentImageIndex 
+                ? 'w-6 bg-[#e82625]' 
+                : 'bg-[#202020]/20 hover:bg-[#202020]/40'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
-export default AdvertisementBanner;
+export default Creative;

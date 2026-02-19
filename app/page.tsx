@@ -1,4 +1,5 @@
 
+import Creative from "@/components/creative";
 import BeforeAfterSliderdrag from "@/components/drag";
 import FAQ from "@/components/faq";
 import ContactFooterReplica from "@/components/footer";
@@ -20,7 +21,7 @@ export default function Home() {
         <AdGloHeroReplica />
       </section>
     <HairTreatmentsGrid />
-   
+   <Creative />
 
       <HairConsultationCardExact />
     
@@ -36,9 +37,6 @@ export default function Home() {
       <section id="faq">
         <FAQ />
       </section>
-      {/* <section id="services">
-        <SimpleMap />
-      </section> */}
 
         {/* <AppointmentFormnew /> */}
 
