@@ -2,6 +2,15 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect } from "react";
+
+// Add type declaration for gtag
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+    dataLayer: any[];
+  }
+}
 
 type Props = {
   logoSrc?: string;
@@ -15,6 +24,15 @@ export default function ThankTopBar({
   buttonText = "Call Now",
 }: Props) {
   const telHref = `tel:${phone.replace(/\s+/g, "")}`;
+
+  useEffect(() => {
+    // Track conversion when component mounts
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-11124508870/v7SwCJmXkMQbEMaRyrgp'
+      });
+    }
+  }, []);
 
   const handleCallClick = () => {
     // onClick call

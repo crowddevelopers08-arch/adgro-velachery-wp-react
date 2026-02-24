@@ -1,41 +1,8 @@
 "use client";
 
 import ThankTopBar from "@/components/thanknavbar";
-import { useEffect } from "react";
-
-// Add type declaration for gtag
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
-  }
-}
 
 export default function SimpleThankYouPage() {
-  useEffect(() => {
-    // Track conversion when component mounts
-    const trackConversion = () => {
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'conversion', {
-          'send_to': 'AW-17773968064/9VdWCPnnzdsbEMD1pJtC',
-          'value': 1.0,
-          'currency': 'INR'
-        });
-      }
-    };
-
-    trackConversion();
-    
-    const intervalId = setInterval(() => {
-      if (typeof window !== 'undefined' && window.gtag) {
-        trackConversion();
-        clearInterval(intervalId);
-      }
-    }, 100);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
   return (
     <>
       <style jsx global>{`
