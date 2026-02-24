@@ -63,13 +63,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} antialiased`}>
       <head>
-        {/* Google Analytics - gtag.js */}
+        {/* Google Analytics 4 - G-FR90F9TQWP */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-FR90F9TQWP"
         />
         <Script
-          id="google-analytics"
+          id="google-analytics-1"
           strategy="afterInteractive"
         >
           {`
@@ -77,6 +77,23 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-FR90F9TQWP');
+          `}
+        </Script>
+        
+        {/* Google Ads - AW-11124508870 */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11124508870"
+        />
+        <Script
+          id="google-analytics-2"
+          strategy="afterInteractive"
+        >
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-11124508870');
           `}
         </Script>
         
