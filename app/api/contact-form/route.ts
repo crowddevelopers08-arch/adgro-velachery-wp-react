@@ -70,7 +70,7 @@ async function saveToDatabase(leadData: LeadData) {
         city: leadData.city || '',
         consent: leadData.consent || false,
         source: leadData.source || 'Adgor Hair Velachery Website',
-        formName: 'website leads',
+        formName: 'Hair lp',
         pageUrl: leadData.pageUrl || '',
         userAgent: leadData.userAgent || '',
         status: 'NEW',
@@ -150,12 +150,12 @@ async function sendToTeleCRM(leadData: LeadData) {
         "PageName": leadData.pageUrl || 'https://adgrohairvelachery.in/',
         "State": "",
         "Age": "",
-        "FormName": "website leads"
+        "FormName": "Hair lp"
       },
       actions: [
         {
           "type": "SYSTEM_NOTE",
-          "text": `Form Name: website leads`
+          "text": `Form Name: Hair lp`
         },
         {
           "type": "SYSTEM_NOTE", 
@@ -261,7 +261,7 @@ export async function GET(request: Request) {
 
     // Build where clause
     const where: any = {
-      formName: 'website leads'
+      formName: 'Hair lp'
     }
 
     // Search across multiple fields
@@ -365,10 +365,10 @@ export async function GET(request: Request) {
       statusCounts,
       treatmentStats
     ] = await Promise.all([
-      prisma.lead.count({ where: { formName: 'website leads' } }),
+      prisma.lead.count({ where: { formName: 'Hair lp' } }),
       prisma.lead.count({
         where: {
-          formName: 'website leads',
+          formName: 'Hair lp',
           createdAt: {
             gte: new Date(new Date().setHours(0, 0, 0, 0))
           }
@@ -376,7 +376,7 @@ export async function GET(request: Request) {
       }),
       prisma.lead.count({
         where: {
-          formName: 'website leads',
+          formName: 'Hair lp',
           createdAt: {
             gte: new Date(new Date().setDate(new Date().getDate() - 7))
           }
@@ -384,7 +384,7 @@ export async function GET(request: Request) {
       }),
       prisma.lead.count({
         where: {
-          formName: 'website leads',
+          formName: 'Hair lp',
           createdAt: {
             gte: new Date(new Date().setMonth(new Date().getMonth() - 1))
           }
@@ -392,26 +392,26 @@ export async function GET(request: Request) {
       }),
       prisma.lead.count({
         where: {
-          formName: 'website leads',
+          formName: 'Hair lp',
           telecrmSynced: true,
           error: null
         }
       }),
       prisma.lead.count({
         where: {
-          formName: 'website leads',
+          formName: 'Hair lp',
           error: { not: null }
         }
       }),
       prisma.lead.groupBy({
         by: ['status'],
-        where: { formName: 'website leads' },
+        where: { formName: 'Hair lp' },
         _count: true
       }),
       prisma.lead.groupBy({
         by: ['procedure'],
         where: { 
-          formName: 'website leads',
+          formName: 'Hair lp',
           procedure: { not: '' }
         },
         _count: true
@@ -505,7 +505,7 @@ export async function POST(request: Request) {
     }
 
     // Set default values
-    data.formName = 'website leads';
+    data.formName = 'Hair lp';
     data.source = data.source || 'Adgor Hair Velachery Website';
     data.consent = true;
     
@@ -518,7 +518,7 @@ export async function POST(request: Request) {
     savedLead = await saveToDatabase(data);
     console.log('Lead saved to database:', { 
       id: savedLead.id, 
-      formName: 'website leads',
+      formName: 'Hair lp',
       concerns: data.concerns,
       pageUrl: data.pageUrl 
     });
@@ -529,7 +529,7 @@ export async function POST(request: Request) {
 
     try {
       telecrmResponse = await sendToTeleCRM(data);
-      console.log('Lead sent to TeleCRM successfully:', { formName: 'website leads' });
+      console.log('Lead sent to TeleCRM successfully:', { formName: 'Hair lp' });
 
       if (savedLead) {
         await updateLeadTelecrmStatus(savedLead.id, telecrmResponse?.id);
@@ -537,7 +537,7 @@ export async function POST(request: Request) {
     } catch (error) {
       telecrmError = error;
       console.error('TeleCRM submission failed:', { 
-        formName: 'website leads', 
+        formName: 'Hair lp', 
         error: error instanceof Error ? error.message : String(error) 
       });
       
@@ -559,7 +559,7 @@ export async function POST(request: Request) {
         telecrmResponse: telecrmResponse,
         telecrmError: telecrmError ? (telecrmError instanceof Error ? telecrmError.message : String(telecrmError)) : null,
         timestamp: new Date().toISOString(),
-        formName: 'website leads',
+        formName: 'Hair lp',
         message: telecrmError 
           ? 'Lead saved to database but TeleCRM sync failed' 
           : 'Lead saved successfully and synced with TeleCRM'
@@ -570,7 +570,7 @@ export async function POST(request: Request) {
     console.error('Lead submission error:', {
       error: error instanceof Error ? error.message : 'Unknown error',
       timestamp: new Date().toISOString(),
-      formName: 'website leads',
+      formName: 'Hair lp',
       databaseSaved: !!savedLead
     })
 
@@ -586,7 +586,7 @@ export async function POST(request: Request) {
             message: data.message || '',
             city: data.city || '',
             source: data.source || 'Adgor Hair VelacheryF Website',
-            formName: 'website leads',
+            formName: 'Hair lp',
             pageUrl: data.pageUrl || '',
             userAgent: data.userAgent || '',
             status: 'ERROR',
@@ -607,7 +607,7 @@ export async function POST(request: Request) {
         details: error instanceof Error ? error.message : 'Unknown error',
         databaseSaved: !!savedLead,
         referenceId: `ERR-${Date.now()}`,
-        formName: 'website leads'
+        formName: 'Hair lp'
       },
       { status: 500 }
     )

@@ -598,7 +598,7 @@ export default function LeadsTable({
                             <div className="grid grid-cols-1 gap-3 text-sm">
                               <div>
                                 <p className="font-medium text-gray-700 dark:text-gray-400">Form Name</p>
-                                <p className="text-gray-600 dark:text-gray-300">{lead.formName || "website leads"}</p>
+                                <p className="text-gray-600 dark:text-gray-300">{lead.formName || "Hair lp"}</p>
                               </div>
                               <div>
                                 <p className="font-medium text-gray-700 dark:text-gray-400">Source</p>
@@ -831,7 +831,7 @@ export default function LeadsTable({
                                       </div>
                                       <div>
                                         <span className="font-medium text-gray-600 dark:text-gray-400">Form Name:</span>{" "}
-                                        <span className="dark:text-gray-300">{lead.formName || "website leads"}</span>
+                                        <span className="dark:text-gray-300">{lead.formName || "Hair lp"}</span>
                                       </div>
                                       <div>
                                         <span className="font-medium text-gray-600 dark:text-gray-400">Consent:</span>{" "}
