@@ -26,15 +26,25 @@ export default function ThankTopBar({
   const telHref = `tel:${phone.replace(/\s+/g, "")}`;
 
   useEffect(() => {
-    // Track conversion when component mounts
+    // Track conversion when component mounts - Updated with new event tag
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
-        'send_to': 'AW-11124508870/v7SwCJmXkMQbEMaRyrgp'
+      gtag('event', 'conversion', {
+        'send_to': 'AW-11124508870/wS6cCIrAm_4bEMaRyrgp',
+        'value': 1.0,
+        'currency': 'INR'
       });
     }
   }, []);
 
   const handleCallClick = () => {
+    // Track call click conversion
+    if (typeof window !== 'undefined' && window.gtag) {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-11124508870/wS6cCIrAm_4bEMaRyrgp',
+        'value': 1.0,
+        'currency': 'INR'
+      });
+    }
     // onClick call
     window.location.href = telHref;
   };
