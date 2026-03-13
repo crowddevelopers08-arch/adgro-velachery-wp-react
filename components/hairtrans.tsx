@@ -13,7 +13,7 @@ const BeforeAfterSection = () => {
   const combinedImages = [
     {
       id: 1,
-      image: "/Slide-1.png",
+      image: "https://ik.imagekit.io/7yen5ugz0/public/public/Slide-1.png",
       title: "Male Pattern Hair Loss",
       description: "6 months after PRP + QR 678 treatment",
       beforeLabel: "Before Treatment",
@@ -21,7 +21,7 @@ const BeforeAfterSection = () => {
     },
     {
       id: 2,
-      image: "/Slide-2.png",
+      image: "https://ik.imagekit.io/7yen5ugz0/public/public/Slide-2.png",
       title: "Female Hair Thinning",
       description: "4 months after GFC therapy",
       beforeLabel: "Before Treatment",
@@ -29,7 +29,7 @@ const BeforeAfterSection = () => {
     },
     {
       id: 3,
-      image: "/Slide-3.png",
+      image: "https://ik.imagekit.io/7yen5ugz0/public/public/Slide-3.png",
       title: "Traction Alopecia",
       description: "8 weeks after laser therapy",
       beforeLabel: "Before Treatment",

@@ -227,7 +227,7 @@ const RequestCallbackSection = () => {
 
               <div className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4 pl-0 sm:pl-2 md:pl-4">
                 <img
-                  src="/unnamed.png"
+                  src="https://ik.imagekit.io/7yen5ugz0/public/public/unnamed.png"
                   alt="Archana Pandian"
                   className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover"
                 />

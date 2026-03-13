@@ -7,19 +7,19 @@ const IVFHeroExact = () => {
   // Array of images for the carousel
   const carouselImages = [
     {
-      src: "/Slide-1.png",
+      src: "https://ik.imagekit.io/7yen5ugz0/public/public/Slide-1.png",
       alt: "Happy Family"
     },
     {
-      src: "/Slide-2.png", // Replace with your actual image path
+      src: "https://ik.imagekit.io/7yen5ugz0/public/public/Slide-2.png", // Replace with your actual image path
       alt: "Happy Patient 2"
     },
     {
-      src: "/Slide-3.png", // Replace with your actual image path
+      src: "https://ik.imagekit.io/7yen5ugz0/public/public/Slide-3.png", // Replace with your actual image path
       alt: "Happy Patient 3"
     },
     {
-      src: "/Slide-2.png", // Replace with your actual image path
+      src: "https://ik.imagekit.io/7yen5ugz0/public/public/Slide-2.png", // Replace with your actual image path
       alt: "Happy Patient 4"
     }
   ];
@@ -79,7 +79,7 @@ const IVFHeroExact = () => {
           <div className="flex justify-center lg:justify-start mb-4 lg:mb-6 max-[470px]:mb-6">
             <div className="overflow-hidden rounded-[16px] w-full max-[470px]:h-22 max-w-[350px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[400px] h-[70px] sm:h-[80px] md:h-[90px] lg:h-[100px]">
               <img
-                src="/add.png"
+                src="https://ik.imagekit.io/7yen5ugz0/public/public/add.png"
                 alt="Additional Information"
                 className="w-full h-full object-cover"
               />

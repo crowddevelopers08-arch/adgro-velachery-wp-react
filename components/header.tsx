@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function GrohairTopBar({
-  logoSrc = "/ambatur-logo.jpg",
+  logoSrc = "https://ik.imagekit.io/7yen5ugz0/public/public/ambatur-logo.jpg",
   phone = "+91 8390856789",
   buttonText = "Call Now",
 }: Props) {
