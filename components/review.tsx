@@ -15,37 +15,37 @@ const ClinicVideosResponsiveGrid = () => {
     {
       id: 1,
       title: "Doctor Explaining Hair Loss Evaluation",
-      videoUrl: "https://ik.imagekit.io/7yen5ugz0/public/public/one.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "/one.mp4", // 🔁 Replace with your actual video path
       duration: "5:30"
     },
     {
       id: 2,
       title: "Regenera Activa Treatment Overview",
-      videoUrl: "https://ik.imagekit.io/7yen5ugz0/public/public/five.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "/five.mp4", // 🔁 Replace with your actual video path
       duration: "8:45"
     },
     {
       id: 3,
       title: "In-Clinic Hair Treatment Process",
-      videoUrl: "https://ik.imagekit.io/7yen5ugz0/public/public/three.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "/three.mp4", // 🔁 Replace with your actual video path
       duration: "6:15"
     },
     {
       id: 4,
       title: "Patient Consultation Experience",
-      videoUrl: "https://ik.imagekit.io/7yen5ugz0/public/public/four.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "/four.mp4", // 🔁 Replace with your actual video path
       duration: "4:45"
     },
     {
       id: 5,
       title: "Advanced Hair Restoration Techniques",
-      videoUrl: "https://ik.imagekit.io/7yen5ugz0/public/public/two.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "/two.mp4", // 🔁 Replace with your actual video path
       duration: "7:20"
     },
     {
       id: 6,
       title: "Post-Treatment Care Guidelines",
-      videoUrl: "https://ik.imagekit.io/7yen5ugz0/public/public/six.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "/six.mp4", // 🔁 Replace with your actual video path
       duration: "5:50"
     }
   ];

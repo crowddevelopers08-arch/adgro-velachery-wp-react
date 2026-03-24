@@ -7,7 +7,7 @@ const LegacySection = () => {
       <div 
         className="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat z-0"
         style={{
-          backgroundImage: "url('https://ik.imagekit.io/7yen5ugz0/public/public/header-image.png')", // Replace with your background image path
+          backgroundImage: "url('/header-image.png')", // Replace with your background image path
         }}
       />
       

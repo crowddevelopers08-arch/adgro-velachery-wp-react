@@ -14,7 +14,7 @@ const Footer = () => {
           {/* LEFT – BRAND */}
           <div>
             <img
-              src="https://ik.imagekit.io/7yen5ugz0/public/public/logo2.png"
+              src="/logo2.png"
               alt="Advanced Grohair"
               className="h-12 mb-4"
             />

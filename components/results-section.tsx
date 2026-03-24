@@ -5,32 +5,32 @@ const cards = [
   {
     tag: "Hair Loss",
     title: "Notice thinning, shedding, or bald spots? Our tailored solutions address your needs and revive your hair’s health",
-    image: "https://ik.imagekit.io/7yen5ugz0/public/public/Frame-2-1.png",
+    image: "/Frame-2-1.png",
   },
   {
     tag: "Baldness",
     title: "Regain a full head of hair and boost your confidence with advanced restoration techniques",
-    image: "https://ik.imagekit.io/7yen5ugz0/public/public/Frame-3-1.png",
+    image: "/Frame-3-1.png",
   },
   {
     tag: "Hair Thinning",
     title: "Find effective treatments for patchy hair loss due to Alopecia Areata, promoting healthy hair growth.",
-    image: "https://ik.imagekit.io/7yen5ugz0/public/public/Frame-4-1.png",
+    image: "/Frame-4-1.png",
   },
   {
     tag: "Alopecia Areata",
     title: "Discover treatments for patchy hair loss from Alopecia Areata, promoting healthy growth and restoring",
-    image: "https://ik.imagekit.io/7yen5ugz0/public/public/Frame-5.png",
+    image: "/Frame-5.png",
   },
   {
     tag: "Receding Hairline",
     title: "Halt the progression of a receding hairline and reclaim your youthful look with personalized solutions",
-    image: "https://ik.imagekit.io/7yen5ugz0/public/public/Frame-6.png",
+    image: "/Frame-6.png",
   },
   {
     tag: "Genetic Hair Loss",
     title: "Combat hereditary hair loss patterns with personalized treatments, targeting the root cause",
-    image: "https://ik.imagekit.io/7yen5ugz0/public/public/Frame-7.png",
+    image: "/Frame-7.png",
   },
 ];
 
