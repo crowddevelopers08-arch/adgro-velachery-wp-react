@@ -28,7 +28,7 @@ export default function SimplePrivacyPolicyPage() {
           {/* Introduction */}
           <div className="mb-8">
             <p className="text-gray-600 text-lg">
-              This Privacy Policy describes how Sai Health and Beauty Ventures (collectively "Company", "we", "our", "us") collects, uses, shares, protects or otherwise processes your information/personal data through our website adgrohairvelachery.in (hereinafter referred to as the "Platform").
+              This Privacy Policy describes how Adgro Hair Velachery (collectively "Company", "we", "our", "us") collects, uses, shares, protects or otherwise processes your information/personal data through our website adgrohairvelachery.in (hereinafter referred to as the "Platform").
             </p>
             <p className="text-gray-600 text-lg mt-4">
               By visiting this Platform or availing any services, you agree to be bound by this Privacy Policy, our Terms of Use, and applicable laws of India. If you do not agree, please do not use our Platform.
@@ -149,7 +149,7 @@ export default function SimplePrivacyPolicyPage() {
               <div className="space-y-4">
                 <div className="bg-gray-50 rounded-lg p-4 border-l-4" style={{ borderLeftColor: "#e82625" }}>
                   <p className="text-gray-700 mb-2">
-                    <span className="font-medium">Company Name:</span> Sai Health and Beauty Ventures
+                    <span className="font-medium">Company Name:</span> Adgro Hair Velachery
                   </p>
                   <p className="text-gray-700 mb-2">
                     <span className="font-medium">Website:</span> adgrohairvelachery.in
@@ -158,7 +158,7 @@ export default function SimplePrivacyPolicyPage() {
                     <span className="font-medium">Email:</span> customercare@adgrohairvelachery.in
                   </p>
                   <p className="text-gray-700">
-                    <span className="font-medium">Phone:</span> 1800 412 3605
+                    <span className="font-medium">Phone:</span> 8390856789
                   </p>
                 </div>
               </div>
@@ -169,7 +169,7 @@ export default function SimplePrivacyPolicyPage() {
               }}>
                 <p className="text-center text-gray-700 text-lg">
                   <span className="font-bold" style={{ color: "#e82625" }}>
-                    Sai Health and Beauty Ventures:
+                    Adgro Hair Velachery:
                   </span>{" "}
                   Committed to protecting your privacy while helping you achieve healthier, fuller hair.
                 </p>
@@ -180,7 +180,7 @@ export default function SimplePrivacyPolicyPage() {
           {/* Decorative element */}
           <div className="mt-12 text-center">
             <p className="text-xs text-gray-400">
-              © {new Date().getFullYear()} Sai Health and Beauty Ventures. All rights reserved.
+              © {new Date().getFullYear()} Adgro Hair Velachery. All rights reserved.
             </p>
           </div>
         </div>
