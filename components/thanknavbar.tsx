@@ -14,7 +14,7 @@ declare global {
 
 type Props = {
   logoSrc?: string;
-  phone?: string;   // "+91 7409256789"
+  phone?: string;   // "+91 8390856789256789"
   buttonText?: string; 
 };
 
