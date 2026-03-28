@@ -97,7 +97,7 @@ const Footer = () => {
 
                <div className="fixed bottom-0 left-0 right-0 z-50 flex sm:hidden">
           <a
-            href="tel:+918390856789256789"
+            href="tel:+918390856789"
             className="flex-1 flex items-center justify-center gap-2 bg-[#ea2424] text-white py-3 px-4 font-medium hover:bg-[#ea2424]/90 transition-colors"
           >
             <PhoneCall size={ICON_SIZE} className="shrink-0" />

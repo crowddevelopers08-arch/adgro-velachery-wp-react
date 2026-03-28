@@ -5,8 +5,7 @@ import Image from "next/image";
 
 type Props = {
   logoSrc?: string;
-  phone?: string;   // "+91 8390856789256789"
-  buttonText?: string; // "Call Now"
+  phone?: string;   // "+91 8390856789 buttonText?: string; // "Call Now"
 };
 
 export default function GrohairTopBar({
