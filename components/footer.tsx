@@ -44,14 +44,13 @@ const Footer = () => {
 
             <ul className="space-y-4 text-gray-300">
               <li className="font-medium text-white">
-                KAVITHA RAVIKUMAR
+                
               </li>
               <li className="uppercase text-sm tracking-wide">
-                SAI HEALTH AND BEAUTY VENTURES
+                  Adgro Hair Velachery
               </li>
               <li className="text-sm leading-relaxed">
-                2nd Floor, 31, Sai Niddhi, Padian Street,
-                Velachery, Chennai, Tamil Nadu – 600042
+                Second Floor Block No.20, Sankaran Avenue, Plot No.31, Pandian St, Indira Gandhi Nagar, Velachery, Chennai, Tamil Nadu 600042
               </li>
               <li>
                 <a
