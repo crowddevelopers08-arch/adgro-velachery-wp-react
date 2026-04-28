@@ -6,6 +6,7 @@ import ContactFooterReplica from "@/components/footer";
 import AdvertisementBanner from "@/components/hairtrans";
 import GrohairTopBar from "@/components/header";
 import AdGloHeroReplica from "@/components/hero-section";
+import InstagramVideosSection from "@/components/instagram-videos-section";
 import GloskinHighlightSection from "@/components/logoslider";
 import HairTreatmentsGrid from "@/components/results-section";
 import TestimonialCard from "@/components/review";
@@ -31,6 +32,7 @@ export default function Home() {
 
     <AdvertisementBanner />
     <TestimonialCard />
+    <InstagramVideosSection />
       <GloskinHighlightSection />
 
 <BeforeAfterSliderdrag />

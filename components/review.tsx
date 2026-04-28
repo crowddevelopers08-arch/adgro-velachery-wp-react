@@ -113,7 +113,7 @@ const ClinicVideosResponsiveGrid = () => {
         </div>
 
         {/* ─── MOBILE CAROUSEL (< lg) — 1 video per slide ─── */}
-        <div className="lg:hidden relative mb-8 sm:mb-10">
+        <div className="lg:hidden relative">
           <div className="relative w-full">
             <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl bg-black">
               <div
@@ -185,7 +185,7 @@ const ClinicVideosResponsiveGrid = () => {
         </div>
 
         {/* ─── DESKTOP CAROUSEL (lg+) — 3 videos per slide ─── */}
-        <div className="hidden lg:block mb-10 lg:mb-12">
+        <div className="hidden lg:block">
           <div className="relative">
             {/* Slides Wrapper */}
             <div className="overflow-hidden rounded-2xl">
