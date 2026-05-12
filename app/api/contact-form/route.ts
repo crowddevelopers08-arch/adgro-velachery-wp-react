@@ -10,6 +10,8 @@ interface LeadData {
   email?: string
   procedure?: string  // Will store concatenated concerns
   concerns?: string[] // Store individual concerns
+  hairLossStage?: string
+  willingToVisit?: boolean
   city?: string
   message?: string
   consent?: boolean
@@ -36,6 +38,11 @@ function generateFormDataString(leadData: LeadData): string {
   } else if (leadData.procedure) {
     details.push(`Treatment: ${leadData.procedure}`);
   }
+
+  if (leadData.hairLossStage) details.push(`Hair Loss Stage: ${leadData.hairLossStage}`);
+  if (typeof leadData.willingToVisit === 'boolean') {
+    details.push(`Willing To Visit Adgro Velachery: ${leadData.willingToVisit ? 'Yes' : 'No'}`);
+  }
   
   if (leadData.city) details.push(`PIN Code: ${leadData.city}`);
   if (leadData.source) details.push(`Source: ${leadData.source}`);
@@ -60,13 +67,23 @@ function generateFormDataString(leadData: LeadData): string {
  */
 async function saveToDatabase(leadData: LeadData) {
   try {
+    const structuredMessage = [
+      leadData.message,
+      leadData.hairLossStage ? `Hair Loss Stage: ${leadData.hairLossStage}` : '',
+      typeof leadData.willingToVisit === 'boolean'
+        ? `Willing To Visit Adgro Velachery: ${leadData.willingToVisit ? 'Yes' : 'No'}`
+        : '',
+    ]
+      .filter(Boolean)
+      .join(' | ');
+
     const lead = await prisma.lead.create({
       data: {
         name: leadData.name,
         phone: leadData.phone,
         email: leadData.email || '',
         procedure: leadData.procedure || leadData.concerns?.join(', ') || '',
-        message: leadData.message || '',
+        message: structuredMessage,
         city: leadData.city || '',
         consent: leadData.consent || false,
         source: leadData.source || 'Adgor Hair Velachery Website',
@@ -172,6 +189,14 @@ async function sendToTeleCRM(leadData: LeadData) {
         {
           "type": "SYSTEM_NOTE",
           "text": `Concerns: ${concernsText}`
+        },
+        {
+          "type": "SYSTEM_NOTE",
+          "text": `Hair Loss Stage: ${leadData.hairLossStage || 'Not specified'}`
+        },
+        {
+          "type": "SYSTEM_NOTE",
+          "text": `Willing To Visit Adgro Velachery: ${typeof leadData.willingToVisit === 'boolean' ? (leadData.willingToVisit ? 'Yes' : 'No') : 'Not specified'}`
         },
         {
           "type": "SYSTEM_NOTE",
@@ -583,7 +608,13 @@ export async function POST(request: Request) {
             phone: data.phone,
             email: data.email || '',
             procedure: data.procedure || data.concerns?.join(', ') || '',
-            message: data.message || '',
+            message: [
+              data.message,
+              data.hairLossStage ? `Hair Loss Stage: ${data.hairLossStage}` : '',
+              typeof data.willingToVisit === 'boolean'
+                ? `Willing To Visit Adgro Velachery: ${data.willingToVisit ? 'Yes' : 'No'}`
+                : '',
+            ].filter(Boolean).join(' | '),
             city: data.city || '',
             source: data.source || 'Adgor Hair VelacheryF Website',
             formName: 'Hair lp',
