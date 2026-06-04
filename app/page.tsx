@@ -26,14 +26,11 @@ export default function Home() {
       <GrohairTopBar />
 
       <section id="hero">
-<<<<<<< HEAD
         <BannerCtaSection />
-=======
-        <PromoHeroSlider />
+        {/* <PromoHeroSlider /> */}
       </section>
       <section id="hero-details">
-        <AdGloHeroReplica />
->>>>>>> a32c72f20dd5fc7921db35bba6716cdba03670ee
+        {/* <AdGloHeroReplica /> */}
       </section>
     {/* <HairTreatmentsGrid /> */}
     <WhyChooseSection />
@@ -50,12 +47,8 @@ export default function Home() {
 
     <AdvertisementBanner />
     <TestimonialCard />
-<<<<<<< HEAD
+    {/* <InstagramVideosSection /> */}
       {/* <GloskinHighlightSection /> */}
-=======
-    <InstagramVideosSection />
-      <GloskinHighlightSection />
->>>>>>> a32c72f20dd5fc7921db35bba6716cdba03670ee
 
 <BeforeAfterSliderdrag />
       <section id="faq">

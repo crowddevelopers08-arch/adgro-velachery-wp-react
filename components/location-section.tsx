@@ -13,7 +13,7 @@ const LocationSection = () => {
 
       {/* Background image */}
       <img
-        src="/almnnn.jpg"
+        src="/hair-loss-treatment.jpg"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover object-center"
