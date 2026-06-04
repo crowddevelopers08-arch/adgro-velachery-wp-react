@@ -12,7 +12,7 @@ const trustPoints = [
 
 const TrustSection = () => {
   return (
-    <section className="w-full bg-white py-14 md:py-20">
+    <section className="w-full bg-white py-8 md:py-20">
 
       {/* ══════════ MOBILE LAYOUT ══════════ */}
       <div className="md:hidden flex flex-col px-5 gap-5">
@@ -127,7 +127,7 @@ const TrustSection = () => {
                 <div className="w-[90px] h-[90px] rounded-full bg-white border-[2.5px] border-[#e82625] flex items-center justify-center shadow-md">
                   <span className="text-[16px] font-extrabold text-[#e82625]">{trustPoints[1].stat}</span>
                 </div>
-                <p className="text-[10px] font-semibold text-[#202020] w-[90px] leading-tight mt-1">{trustPoints[1].label}</p>
+                <p className="text-[13px] font-semibold text-[#202020] w-[100px] leading-tight mt-1">{trustPoints[1].label}</p>
               </div>
 
               {/* TOP-RIGHT */}
@@ -135,7 +135,7 @@ const TrustSection = () => {
                 <div className="w-[90px] h-[90px] rounded-full bg-[#e82625] flex items-center justify-center shadow-lg">
                   <span className="text-[16px] font-extrabold text-white">{trustPoints[2].stat}</span>
                 </div>
-                <p className="text-[10px] font-semibold text-[#202020] w-[90px] leading-tight mt-1">{trustPoints[2].label}</p>
+                <p className="text-[13px] font-semibold text-[#202020] w-[100px] leading-tight mt-1">{trustPoints[2].label}</p>
               </div>
 
               {/* CENTER (big) */}
@@ -144,7 +144,7 @@ const TrustSection = () => {
                 <div className="w-[115px] h-[115px] rounded-full bg-[#e82625] flex items-center justify-center shadow-2xl">
                   <span className="text-[20px] font-extrabold text-white">{trustPoints[0].stat}</span>
                 </div>
-                <p className="text-[11px] font-bold text-[#202020] w-[110px] leading-tight mt-1">{trustPoints[0].label}</p>
+                <p className="text-[13px] font-bold text-[#202020] w-[110px] leading-tight mt-1">{trustPoints[0].label}</p>
               </div>
 
               {/* LEFT-MID */}
@@ -153,7 +153,7 @@ const TrustSection = () => {
                 <div className="w-[90px] h-[90px] rounded-full bg-[#fff5f5] border-[2.5px] border-[#e82625] flex items-center justify-center shadow-md">
                   <span className="text-[16px] font-extrabold text-[#e82625]">{trustPoints[3].stat}</span>
                 </div>
-                <p className="text-[10px] font-semibold text-[#202020] w-[90px] leading-tight mt-1">{trustPoints[3].label}</p>
+                <p className="text-[13px] font-semibold text-[#202020] w-[100px] leading-tight mt-1">{trustPoints[3].label}</p>
               </div>
 
               {/* RIGHT-MID */}
@@ -162,7 +162,7 @@ const TrustSection = () => {
                 <div className="w-[90px] h-[90px] rounded-full bg-white border-[2.5px] border-[#e82625] flex items-center justify-center shadow-md">
                   <span className="text-[16px] font-extrabold text-[#e82625]">{trustPoints[4].stat}</span>
                 </div>
-                <p className="text-[10px] font-semibold text-[#202020] w-[90px] leading-tight mt-1">{trustPoints[4].label}</p>
+                <p className="text-[13px] font-semibold text-[#202020] w-[100px] leading-tight mt-1">{trustPoints[4].label}</p>
               </div>
 
               {/* BOTTOM-CENTER */}
@@ -171,7 +171,7 @@ const TrustSection = () => {
                 <div className="w-[90px] h-[90px] rounded-full bg-[#e82625] flex items-center justify-center shadow-lg">
                   <span className="text-[16px] font-extrabold text-white">{trustPoints[5].stat}</span>
                 </div>
-                <p className="text-[10px] font-semibold text-[#202020] w-[90px] leading-tight mt-1">{trustPoints[5].label}</p>
+                <p className="text-[13px] font-semibold text-[#202020] w-[100px] leading-tight mt-1">{trustPoints[5].label}</p>
               </div>
 
             </div>

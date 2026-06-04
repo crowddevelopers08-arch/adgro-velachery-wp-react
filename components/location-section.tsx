@@ -3,13 +3,13 @@ import React from "react";
 
 const paragraphs = [
   "Advanced GroHair is one of Chennai's leading hair and skin clinics, with a dedicated center in Velachery serving patients across South Chennai. If you've been searching for a \"hair transplant clinic near me\" or a \"trichologist near me\" — your search ends here.",
-  "Our Velachery clinic offers everything from a first-time hair fall consultation to full hair transplant surgery, all under one roof. We also offer advanced scalp analysis, PRP therapy, laser hair regrowth, and cosmetic hair systems — tailored to your budget and lifestyle.",
+  "Our Velachery clinic offers everything from a first-time hair fall consultation to full hair transplant surgery, all under one roof. We also offer advanced scalp analysis, Growth therapy, laser hair regrowth, and cosmetic hair systems — tailored to your budget and lifestyle.",
   "We don't believe in a one-size-fits-all approach. Every patient gets a personalised treatment plan, flexible financing, and a care team that actually follows through.",
 ];
 
 const LocationSection = () => {
   return (
-    <section className="w-full relative overflow-hidden py-16 md:py-14">
+    <section className="w-full relative overflow-hidden py-8 md:py-14">
 
       {/* Background image */}
       <img
@@ -27,7 +27,7 @@ const LocationSection = () => {
       />
 
       {/* Content */}
-      <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6 flex flex-col items-center gap-12" style={{ zIndex: 2 }}>
+      <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6 flex flex-col items-center gap-12 max-sm:gap-4" style={{ zIndex: 2 }}>
 
         {/* ── TOP: badge + headline ── */}
         <div className="flex flex-col items-center text-center gap-5 max-w-[800px]">

@@ -50,7 +50,7 @@ const BannerCtaSection = () => {
                 Book Free Consultation
               </button>
             </a>
-            <a href="tel:+918000000000">
+            <a href="tel:+918390856789">
               <button
                 className="mobile-btn-secondary flex items-center justify-center gap-1 rounded-[10px] bg-white hover:bg-gray-50 transition-colors duration-200 font-bold shadow-2xl"
                 style={{ color: "#e82625" }}
@@ -66,7 +66,7 @@ const BannerCtaSection = () => {
         </div>
 
         {/* ── DESKTOP: banners.png ── */}
-        <div className="hidden md:block relative w-full rounded-2xl overflow-hidden" style={{ height: "580px" }}>
+        <div className="hidden md:block relative w-full rounded-2xl overflow-hidden" style={{ height: "620px" }}>
           <img
             src="/banners.png"
             alt="Adgro Hair Clinic Banner"
@@ -79,7 +79,7 @@ const BannerCtaSection = () => {
                 Book Free Consultation
               </button>
             </a>
-            <a href="tel:+918000000000">
+            <a href="tel:+918390856789">
               <button className="flex items-center justify-center gap-1 rounded-[10px] bg-white hover:bg-gray-50 transition-colors duration-200 font-bold text-[14px] shadow-2xl"
                 style={{ width: "230px", height: "50px", color: "#e82625" }}>
                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none">

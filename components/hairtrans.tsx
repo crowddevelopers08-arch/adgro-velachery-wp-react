@@ -233,7 +233,7 @@ const BeforeAfterSection = () => {
                 {[
                   { label: "FUE Hair Transplant",   bg: "#e82625", hover: "#e82625" },
                   { label: "DHI Hair Transplant",   bg: "", hover: "#e82625" },
-                  { label: "GFC / PRP Therapy",     bg: "", hover: "#e82625" },
+                  { label: "GFC / Growth Therapy",     bg: "", hover: "#e82625" },
                   { label: "Oxygen Laser Therapy",  bg: "", hover: "#e82625" },
                   { label: "Cosmetic Hair Systems", bg: "", hover: "#e82625" },
                 ].map((item) => (

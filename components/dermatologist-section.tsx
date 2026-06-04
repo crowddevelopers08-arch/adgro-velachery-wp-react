@@ -22,7 +22,7 @@ const DermatologistSection = () => {
 
         {/* 2. Subheading */}
         <p className="text-[#e82625] text-[14px] font-semibold text-center">
-          Leading Chain Of Skin And Hair Clinics in India
+          Leading Chain Of Hair Clinics in India
         </p>
 
         {/* 3. Image */}
@@ -87,7 +87,7 @@ const DermatologistSection = () => {
             FUE &amp; DHI Hair Transplant in Chennai —<br />Permanent. Natural. Yours.
           </h2>
           <p className="text-[#e82625] text-[17px] font-semibold mb-5">
-            Leading Chain Of Skin And Hair Clinics in India
+            Leading Chain Of Hair Clinics in India
           </p>
           <p className="text-gray-500 text-[15px] leading-[1.8] mb-3 max-w-[500px]">
             Stop spending on treatments that only delay the inevitable. A hair transplant at
