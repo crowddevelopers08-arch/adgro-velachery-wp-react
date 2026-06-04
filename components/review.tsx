@@ -15,37 +15,37 @@ const ClinicVideosResponsiveGrid = () => {
     {
       id: 1,
       title: "Doctor Explaining Hair Loss Evaluation",
-      videoUrl: "/one.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "https://ik.imagekit.io/7fubqye3io/one.mp4", // 🔁 Replace with your actual video path
       duration: "5:30"
     },
     {
       id: 2,
       title: "Regenera Activa Treatment Overview",
-      videoUrl: "/five.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "https://ik.imagekit.io/7fubqye3io/two.mp4", // 🔁 Replace with your actual video path
       duration: "8:45"
     },
     {
       id: 3,
       title: "In-Clinic Hair Treatment Process",
-      videoUrl: "/three.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "https://ik.imagekit.io/7fubqye3io/three.mp4", // 🔁 Replace with your actual video path
       duration: "6:15"
     },
     {
       id: 4,
       title: "Patient Consultation Experience",
-      videoUrl: "/four.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "https://ik.imagekit.io/7fubqye3io/four.mp4", // 🔁 Replace with your actual video path
       duration: "4:45"
     },
     {
       id: 5,
       title: "Advanced Hair Restoration Techniques",
-      videoUrl: "/two.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "https://ik.imagekit.io/7fubqye3io/five.mp4", // 🔁 Replace with your actual video path
       duration: "7:20"
     },
     {
       id: 6,
       title: "Post-Treatment Care Guidelines",
-      videoUrl: "/six.mp4", // 🔁 Replace with your actual video path
+      videoUrl: "https://ik.imagekit.io/7fubqye3io/six.mp4", // 🔁 Replace with your actual video path
       duration: "5:50"
     }
   ];
@@ -113,7 +113,7 @@ const ClinicVideosResponsiveGrid = () => {
         </div>
 
         {/* ─── MOBILE CAROUSEL (< lg) — 1 video per slide ─── */}
-        <div className="lg:hidden relative mb-8 sm:mb-10">
+        <div className="lg:hidden relative">
           <div className="relative w-full">
             <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl bg-black">
               <div
@@ -185,7 +185,7 @@ const ClinicVideosResponsiveGrid = () => {
         </div>
 
         {/* ─── DESKTOP CAROUSEL (lg+) — 3 videos per slide ─── */}
-        <div className="hidden lg:block mb-10 lg:mb-12">
+        <div className="hidden lg:block">
           <div className="relative">
             {/* Slides Wrapper */}
             <div className="overflow-hidden rounded-2xl">

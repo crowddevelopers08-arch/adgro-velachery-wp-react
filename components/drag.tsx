@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const CONCERN_OPTIONS = [
   "Hair Loss",
@@ -13,6 +14,14 @@ const CONCERN_OPTIONS = [
   "Genetic Hair Loss"
 ];
 
+const HAIR_LOSS_STAGE_OPTIONS = [
+  { id: "stage-1", label: "Stage 1", imageSrc: "/st1.jpeg" },
+  { id: "stage-2", label: "Stage 2", imageSrc: "/st2.jpeg" },
+  { id: "stage-3", label: "Stage 3", imageSrc: "/st3.jpeg" },
+  { id: "stage-4", label: "Stage 4", imageSrc: "/st4.jpeg" },
+  { id: "stage-5", label: "Stage 5", imageSrc: "/st5.jpeg" },
+];
+
 const RequestCallbackSection = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -20,7 +29,8 @@ const RequestCallbackSection = () => {
     phone: "",
     email: "",
     concerns: [] as string[],
-    city: "", // PIN code
+    hairLossStage: "",
+    willingToVisit: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -29,7 +39,9 @@ const RequestCallbackSection = () => {
     message: string;
   }>({ type: null, message: '' });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -60,8 +72,16 @@ const RequestCallbackSection = () => {
       setSubmitStatus({ type: 'error', message: 'Please enter a valid email address' });
       return false;
     }
-    if (formData.city && !/^\d{6}$/.test(formData.city)) {
-      setSubmitStatus({ type: 'error', message: 'Please enter a valid 6-digit PIN code' });
+    if (!formData.hairLossStage) {
+      setSubmitStatus({ type: 'error', message: 'Please select your hair loss stage' });
+      return false;
+    }
+    if (!formData.willingToVisit) {
+      setSubmitStatus({ type: 'error', message: 'Please answer whether you are willing to visit Adgro Velachery' });
+      return false;
+    }
+    if (formData.willingToVisit !== "yes") {
+      setSubmitStatus({ type: 'error', message: 'Form submission is available only for users willing to visit Adgro Velachery' });
       return false;
     }
     return true;
@@ -85,8 +105,9 @@ const RequestCallbackSection = () => {
         phone: formData.phone,
         email: formData.email || undefined,
         procedure: formData.concerns.join(', '), // Store concerns as procedure
-        city: formData.city || undefined,
         concerns: formData.concerns, // Store individual concerns
+        hairLossStage: formData.hairLossStage,
+        willingToVisit: formData.willingToVisit === "yes",
         source: 'Adgor Hair Velachery Website',
         pageUrl: typeof window !== 'undefined' ? window.location.href : '',
         userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : '',
@@ -235,17 +256,72 @@ const RequestCallbackSection = () => {
                   </div>
                 </div>
 
-                <input
-                  type="text"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleInputChange}
-                  placeholder="Type 6 Digit Your Pincode Here"
-                  maxLength={6}
-                  pattern="[0-9]{6}"
-                  className="w-full bg-transparent border-b border-gray-600 focus:outline-none py-2 text-sm sm:text-base px-2 mt-2"
-                  disabled={isSubmitting}
-                />
+                <div className="pt-1">
+                  <p className="text-xs sm:text-sm text-gray-400 mb-2">
+                    Select Your Hair Loss Stage
+                  </p>
+                  <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
+                    {HAIR_LOSS_STAGE_OPTIONS.map((stage) => (
+                      <label
+                        key={stage.id}
+                        className={`cursor-pointer overflow-hidden rounded-2xl border transition ${
+                          formData.hairLossStage === stage.label
+                            ? "border-[#e53935] bg-[#2c2c2c] ring-2 ring-[#e53935]/50"
+                            : "border-gray-700 bg-[#2c2c2c] hover:border-gray-500"
+                        } ${isSubmitting ? "pointer-events-none opacity-60" : ""}`}
+                      >
+                        <input
+                          type="radio"
+                          name="hairLossStage"
+                          value={stage.label}
+                          checked={formData.hairLossStage === stage.label}
+                          onChange={handleInputChange}
+                          className="sr-only"
+                          disabled={isSubmitting}
+                          required
+                        />
+                        <div className="relative mx-auto h-14 w-14 bg-white sm:h-16 sm:w-16">
+                          <Image
+                            src={stage.imageSrc}
+                            alt={stage.label}
+                            fill
+                            sizes="64px"
+                            className="object-cover"
+                          />
+                        </div>
+                        <div className="px-1 py-2 text-center text-[10px] sm:text-xs font-medium text-white">
+                          {stage.label}
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-1">
+                  <p className="text-xs sm:text-sm text-gray-400 mb-2">
+                    Are you willing to visit Adgro Velachery?
+                  </p>
+                  <div className="flex gap-2">
+                    {["yes", "no"].map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center space-x-2 bg-[#2c2c2c] px-3 py-2 rounded-full text-xs sm:text-sm cursor-pointer hover:bg-[#3c3c3c] transition"
+                      >
+                        <input
+                          type="radio"
+                          name="willingToVisit"
+                          value={option}
+                          checked={formData.willingToVisit === option}
+                          onChange={handleInputChange}
+                          className="h-3.5 w-3.5 sm:h-4 sm:w-4 accent-[#e53935]"
+                          disabled={isSubmitting}
+                          required
+                        />
+                        <span>{option === "yes" ? "Yes" : "No"}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
 
                 <button
                   type="submit"
@@ -353,17 +429,72 @@ const RequestCallbackSection = () => {
                   </div>
                 </div>
 
-                <input
-                  type="text"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleInputChange}
-                  placeholder="Type 6 Digit Your Pincode Here"
-                  maxLength={6}
-                  pattern="[0-9]{6}"
-                  className="w-full bg-transparent border-b border-gray-600 focus:outline-none py-2 text-base px-2 mt-2"
-                  disabled={isSubmitting}
-                />
+                <div className="pt-1">
+                  <p className="text-sm text-gray-400 mb-2">
+                    Select Your Hair Loss Stage
+                  </p>
+                  <div className="grid grid-cols-5 gap-2">
+                    {HAIR_LOSS_STAGE_OPTIONS.map((stage) => (
+                      <label
+                        key={stage.id}
+                        className={`cursor-pointer overflow-hidden rounded-2xl border transition ${
+                          formData.hairLossStage === stage.label
+                            ? "border-[#e82625] bg-[#2c2c2c] ring-2 ring-[#e82625]/50"
+                            : "border-gray-700 bg-[#2c2c2c] hover:border-gray-500"
+                        } ${isSubmitting ? "pointer-events-none opacity-60" : ""}`}
+                      >
+                        <input
+                          type="radio"
+                          name="hairLossStage"
+                          value={stage.label}
+                          checked={formData.hairLossStage === stage.label}
+                          onChange={handleInputChange}
+                          className="sr-only"
+                          disabled={isSubmitting}
+                          required
+                        />
+                        <div className="relative mx-auto h-18 w-18 bg-white">
+                          <Image
+                            src={stage.imageSrc}
+                            alt={stage.label}
+                            fill
+                            sizes="72px"
+                            className="object-cover"
+                          />
+                        </div>
+                        <div className="px-1 py-2 text-center text-xs font-medium text-white">
+                          {stage.label}
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-1">
+                  <p className="text-sm text-gray-400 mb-2">
+                    Are you willing to visit Adgro Velachery?
+                  </p>
+                  <div className="flex gap-2">
+                    {["yes", "no"].map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center space-x-2 bg-[#2c2c2c] px-3 py-2 rounded-full text-sm cursor-pointer hover:bg-[#3c3c3c] transition"
+                      >
+                        <input
+                          type="radio"
+                          name="willingToVisit"
+                          value={option}
+                          checked={formData.willingToVisit === option}
+                          onChange={handleInputChange}
+                          className="h-4 w-4 accent-[#e82625]"
+                          disabled={isSubmitting}
+                          required
+                        />
+                        <span>{option === "yes" ? "Yes" : "No"}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
 
                 <button
                   type="submit"

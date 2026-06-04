@@ -13,89 +13,89 @@ export default function SimplePrivacyPolicyPage() {
       <ThankTopBar />
 
       <section
-        className="w-full bg-white py-10 sm:py-8 max-[470px]:py-6"
+        className="w-full bg-white py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8"
         style={{ fontFamily: "'Outfit', sans-serif" }}
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
           {/* Header */}
-          <div className="text-center pt-6 max-[470px]:pt-0 mb-8">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center pt-4 sm:pt-6 mb-6 sm:mb-8 md:mb-10">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
               Privacy Policy
             </h1>
-            <div className="h-1 w-16 bg-[#e82625] mx-auto rounded-full"></div>
+            <div className="h-1 w-12 sm:w-16 bg-[#e82625] mx-auto rounded-full"></div>
           </div>
 
           {/* Introduction */}
-          <div className="mb-8">
-            <p className="text-gray-600 text-lg">
+          <div className="mb-6 sm:mb-8 md:mb-10">
+            <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
               This Privacy Policy describes how Adgro Hair Velachery (collectively "Company", "we", "our", "us") collects, uses, shares, protects or otherwise processes your information/personal data through our website adgrohairvelachery.in (hereinafter referred to as the "Platform").
             </p>
-            <p className="text-gray-600 text-lg mt-4">
+            <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mt-3 sm:mt-4">
               By visiting this Platform or availing any services, you agree to be bound by this Privacy Policy, our Terms of Use, and applicable laws of India. If you do not agree, please do not use our Platform.
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8 md:space-y-10">
             {/* Section 1 - Collection of Information */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                 1. Collection of Informations
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-3 leading-relaxed">
                 We collect personal data such as your name, date of birth, address, phone number, email, and any identity proof details when you sign up or use our services. Sensitive data like bank/payment details or biometric data may be collected with your consent as required by law.
               </p>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-3 leading-relaxed">
                 We may also collect behavioral data and preferences on an aggregate basis. Third-party platforms you use may have their own privacy policies and we recommend reviewing them before sharing personal data.
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
                 We never ask for confidential financial data like PINs or passwords. If you receive such requests, please report them to law enforcement immediately.
               </p>
             </div>
 
             {/* Section 2 - Usage of Personal Data */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                 2. Usage of Personal Data
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-3 leading-relaxed">
                 Your personal data is used to:
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-4 sm:pl-6 text-gray-600 text-sm sm:text-base md:text-lg space-y-2 leading-relaxed">
                 <li>Provide services and fulfill orders</li>
                 <li>Enhance your experience</li>
                 <li>Resolve disputes and troubleshoot issues</li>
                 <li>Notify you of offers, updates, and products</li>
                 <li>Conduct research, surveys and detect fraud</li>
               </ul>
-              <p className="text-gray-600 mt-3">
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg mt-3 leading-relaxed">
                 You may opt out of marketing communications at any time.
               </p>
             </div>
 
             {/* Section 3 - Sharing of Data */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                 3. Sharing of Data
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-3 leading-relaxed">
                 We may share your personal data with:
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-4 sm:pl-6 text-gray-600 text-sm sm:text-base md:text-lg space-y-2 leading-relaxed">
                 <li>Our affiliates, partners, and group companies</li>
                 <li>Third-party service providers, logistics partners, and payment systems</li>
                 <li>Government agencies or law enforcement when legally obligated</li>
               </ul>
-              <p className="text-gray-600 mt-3">
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg mt-3 leading-relaxed">
                 Sharing is done to provide services, fulfill legal requirements, enforce policies, and prevent fraud.
               </p>
             </div>
 
             {/* Section 4 - Security Precautions */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                 4. Security Precautions
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
                 We implement industry-standard security practices to protect your data. While we secure transmissions with encryption and secure servers, data transfer over the internet can never be 100% secure. You are responsible for safeguarding your login credentials.
               </p>
             </div>
