@@ -64,6 +64,7 @@ export default function GrohairTopBar({
                   hover:shadow-lg
                   px-6 py-2.5
                   xs:px-6 xs:py-2.5
+                  rounded-[10px]
                   sm:px-7 sm:py-3
                   md:px-6 md:py-2.5
                   lg:px-6 lg:py-2.5
@@ -72,8 +73,7 @@ export default function GrohairTopBar({
                   cursor-pointer
                 "
                 style={{
-                  backgroundColor: "#ea2424",
-                  borderRadius: "9999px", // This creates the oval/pill shape
+                  backgroundColor: "#ea2424", // This creates the oval/pill shape
                 }}
               >
                 {/* Phone icon - Reduced on desktop */}

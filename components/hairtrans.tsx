@@ -215,15 +215,40 @@ const BeforeAfterSection = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-8 md:mb-12 max-[470px]:mb-0"
           >
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#101828] mb-3 md:mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#101828] mb-5 md:mb-6"
             >
-             Patient Results
+              Patient Results
             </motion.h2>
+
+            {/* 5 treatment titles — each with its own bg colour */}
+            {/* Mobile: single row horizontal scroll | Desktop: flex-wrap centered */}
+            <div className="overflow-x-auto md:overflow-visible mb-5 -mx-4 px-4  md:mx-0 md:px-0"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+              <div className="flex flex-nowrap md:flex-wrap md:justify-center gap-3 w-max md:w-auto">
+                {[
+                  { label: "FUE Hair Transplant",   bg: "#e82625", hover: "#e82625" },
+                  { label: "DHI Hair Transplant",   bg: "", hover: "#e82625" },
+                  { label: "GFC / PRP Therapy",     bg: "", hover: "#e82625" },
+                  { label: "Oxygen Laser Therapy",  bg: "", hover: "#e82625" },
+                  { label: "Cosmetic Hair Systems", bg: "", hover: "#e82625" },
+                ].map((item) => (
+                  <span
+                    key={item.label}
+                    className="flex-shrink-0 px-5 py-2 rounded-full text-[13px] sm:text-[14px] font-semibold hover:text-white text-black cursor-pointer transition-all duration-200"
+                    style={{ backgroundColor: item.bg }}
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = item.hover)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = item.bg)}
+                  >
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+            </div>
             {/* <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -429,7 +454,7 @@ const BeforeAfterSection = () => {
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
-              className="bg-[#e82625] cursor-pointer text-white px-10 sm:px-12 py-3.5 sm:py-4 text-sm sm:text-base md:text-lg font-medium hover:bg-[#d01d1c] transition-all duration-300 rounded-full shadow-[0_10px_25px_rgba(232,38,37,0.25)] relative overflow-hidden"
+              className="bg-[#e82625] cursor-pointer text-white px-10 sm:px-12 py-3.5 sm:py-4 text-sm sm:text-base md:text-lg font-medium hover:bg-[#d01d1c] transition-all duration-300 rounded-[10px] shadow-[0_10px_25px_rgba(232,38,37,0.25)] relative overflow-hidden"
             >
               <motion.span
                 initial={{ x: "-100%" }}
@@ -441,6 +466,7 @@ const BeforeAfterSection = () => {
             </motion.button>
             </a>
           </motion.div>
+
         </div>
       </motion.section>
     </>

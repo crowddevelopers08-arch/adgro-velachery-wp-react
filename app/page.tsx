@@ -1,5 +1,10 @@
 
+import BannerCtaSection from "@/components/banner-cta-section";
+import TrustSection from "@/components/trust-section";
+import LocationSection from "@/components/location-section";
 import Creative from "@/components/creative";
+import DermatologistSection from "@/components/dermatologist-section";
+import OurTreatmentsSection from "@/components/our-treatments-section";
 import BeforeAfterSliderdrag from "@/components/drag";
 import FAQ from "@/components/faq";
 import ContactFooterReplica from "@/components/footer";
@@ -10,6 +15,7 @@ import GloskinHighlightSection from "@/components/logoslider";
 import HairTreatmentsGrid from "@/components/results-section";
 import TestimonialCard from "@/components/review";
 import HairConsultationCardExact from "@/components/skinpopup";
+import WhyChooseSection from "@/components/why-choose-section";
 
 export default function Home() {
   return (
@@ -18,12 +24,16 @@ export default function Home() {
       <GrohairTopBar />
 
       <section id="hero">
-        <AdGloHeroReplica />
+        <BannerCtaSection />
       </section>
-    <HairTreatmentsGrid />
-   <Creative />
+    {/* <HairTreatmentsGrid /> */}
+    <WhyChooseSection />
+   <DermatologistSection />
+   {/* <OurTreatmentsSection /> */}
+   <TrustSection />
+   <LocationSection />
 
-      <HairConsultationCardExact />
+      {/* <HairConsultationCardExact /> */}
     
       {/* <section id="why">
         <ImageCarouselGrid />
@@ -31,7 +41,7 @@ export default function Home() {
 
     <AdvertisementBanner />
     <TestimonialCard />
-      <GloskinHighlightSection />
+      {/* <GloskinHighlightSection /> */}
 
 <BeforeAfterSliderdrag />
       <section id="faq">

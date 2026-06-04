@@ -23,6 +23,7 @@ const RequestCallbackSection = () => {
     city: "", // PIN code
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
@@ -66,11 +67,14 @@ const RequestCallbackSection = () => {
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!validateForm()) return;
-    
+    setShowConfirm(true);
+  };
+
+  const handleConfirmedSubmit = async () => {
+    setShowConfirm(false);
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
@@ -112,6 +116,50 @@ const RequestCallbackSection = () => {
   };
 
   return (
+    <>
+    {/* ── Confirmation popup ── */}
+    {showConfirm && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center px-4"
+        style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>
+        <div className="bg-white rounded-2xl shadow-2xl max-w-[420px] w-full p-8 flex flex-col items-center text-center gap-5">
+
+          {/* Icon */}
+          <div className="w-16 h-16 rounded-full bg-[#fff0f0] flex items-center justify-center">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4C9.37 4 4 9.37 4 16C4 22.63 9.37 28 16 28C22.63 28 28 22.63 28 16C28 9.37 22.63 4 16 4Z" stroke="#e82625" strokeWidth="2" fill="none"/>
+              <path d="M16 10V17" stroke="#e82625" strokeWidth="2.5" strokeLinecap="round"/>
+              <circle cx="16" cy="21.5" r="1.5" fill="#e82625"/>
+            </svg>
+          </div>
+
+          {/* Message */}
+          <h3 className="text-[18px] font-extrabold text-[#202020] leading-snug">
+            Ready to take the first step?
+          </h3>
+          <p className="text-gray-500 text-[14px] leading-relaxed">
+            Our team will call you back within <span className="font-semibold text-[#202020]">24 hours</span> to confirm your free consultation. Shall we proceed?
+          </p>
+
+          {/* Buttons */}
+          <div className="flex gap-3 w-full">
+            <button
+              onClick={() => setShowConfirm(false)}
+              className="flex-1 py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-bold text-[14px] hover:bg-gray-50 transition-colors duration-200"
+            >
+              No, Go Back
+            </button>
+            <button
+              onClick={handleConfirmedSubmit}
+              className="flex-1 py-3 rounded-xl bg-[#e82625] hover:bg-[#c41e1d] text-white font-bold text-[14px] transition-colors duration-200 shadow-lg"
+            >
+              Yes, Book Now →
+            </button>
+          </div>
+
+        </div>
+      </div>
+    )}
+
     <section className="w-full bg-white py-8 md:py-12 lg:py-36">
       <div className="relative max-w-[1500px] mx-auto px-4 sm:px-6 flex justify-center">
         
@@ -121,11 +169,11 @@ const RequestCallbackSection = () => {
           <section id="form">
           {/* FORM CARD - Mobile First (shown first) */}
           <div className="block lg:hidden w-full max-w-full mx-auto px-0 mb-6">
-            <div className="bg-[#1c1c1c] text-white rounded-xl shadow-2xl p-6 sm:p-8">
-              <p className="text-xs sm:text-sm opacity-70 mb-1">We are always ready</p>
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-4">
-                Request a call back
+            <div className="bg-[#1c1c1c] text-white rounded-xl p-6 sm:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-1">
+                Get Your Free Hair Analysis — No Commitment, No Cost.
               </h3>
+              <p className="text-xs sm:text-sm opacity-70 mb-4">Tell us about your concern and we'll call you back within 24 hours.</p>
 
               {submitStatus.type && (
                 <div className={`mb-4 p-3 rounded-lg text-sm ${
@@ -204,7 +252,7 @@ const RequestCallbackSection = () => {
                   disabled={isSubmitting}
                   className="mt-2 sm:mt-3 bg-[#e53935] hover:bg-[#d32f2f] cursor-pointer transition text-white py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-base font-semibold w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? 'Sending...' : 'Get My Free Consultation →'}
                 </button>
               </form>
             </div>
@@ -222,7 +270,7 @@ const RequestCallbackSection = () => {
               <span className="absolute top-10 sm:top-12 md:top-18 left-2 sm:left-4 md:left-6 text-6xl sm:text-7xl opacity-30">“</span>
 
               <p className="text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 pl-0 sm:pl-2 md:pl-4 pt-6 sm:pt-8 text-center lg:text-left">
-                I've been taking treatment for hair here for the last 4 months. I was facing sudden hair fall issue and I should say this that I'm really satisfied with the results. I could see lot of improvement in the first two sessions itself. A special shoutout to My doctor who is such a sweet soul.
+                I started seeing results within the first two sessions. Four months in, my hair fall has reduced drastically. The doctor was warm, patient, and genuinely cared about my progress.”
               </p>
 
               <div className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4 pl-0 sm:pl-2 md:pl-4">
@@ -232,18 +280,19 @@ const RequestCallbackSection = () => {
                   className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover"
                 />
                 <div>
-                  <p className="font-semibold text-base sm:text-lg">Archana Pandian</p>
+                  <p className="font-semibold text-base sm:text-lg">Archana Pandian, Velachery Patient</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* FORM CARD - Desktop version (absolute positioned) */}
-          <div className="hidden lg:block lg:absolute top-[-90px] left-6 xl:left-16 w-full lg:w-auto max-w-full lg:max-w-xl mx-auto mt-6 lg:mt-0">
-            <div className="bg-[#1c1c1c] text-white rounded-xl shadow-2xl p-8">
-              <h3 className="text-2xl font-bold mb-4">
-                Request a call back
+          <div className="hidden lg:block lg:absolute top-[-120px] left-6 xl:left-16 w-full lg:w-auto max-w-full lg:max-w-xl mx-auto mt-6 lg:mt-0">
+            <div className="bg-[#1c1c1c] text-white rounded-xl p-8">
+              <h3 className="text-2xl font-bold mb-1">
+                Get Your Free Hair Analysis — No Commitment, No Cost.
               </h3>
+              <p className="text-sm opacity-70 mb-4">Tell us about your concern and we'll call you back within 24 hours.</p>
 
               {submitStatus.type && (
                 <div className={`mb-4 p-3 rounded-lg text-sm ${
@@ -319,9 +368,9 @@ const RequestCallbackSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="mt-3 bg-[#e82625] hover:bg-[#e82625] cursor-pointer transition text-white py-4 px-8 rounded-full text-base font-semibold w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="mt-3 bg-[#e82625] hover:bg-[#e82625] cursor-pointer transition text-white py-4 px-8 rounded-[10px] text-base font-semibold w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? 'Sending...' : 'Get My Free Consultation →'}
                 </button>
               </form>
             </div>
@@ -330,6 +379,7 @@ const RequestCallbackSection = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

@@ -14,7 +14,7 @@ const cards = [
   },
   {
     tag: "Hair Thinning",
-    title: "Find effective treatments for patchy hair loss due to Alopecia Areata, promoting healthy hair growth.",
+    title: "Find effective treatments for pa tchy hair loss due to Alopecia Areata, promoting healthy hair growth.",
     image: "/Frame-4-1.png",
   },
   {

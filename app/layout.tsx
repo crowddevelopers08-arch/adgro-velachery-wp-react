@@ -10,9 +10,9 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: "Advanced GroHair - Velachery",
+  title: "Advanced GroHair Velachery | Best Hair Transplant Clinic in Chennai",
   description:
-    "Unlock Remarkable Hair Results and Turn Heads Like Never Before",
+    "Looking for a trusted hair clinic in Velachery? Advanced GroHair offers FUE hair transplant, PRP therapy, and expert trichologist consultations in Chennai. Book your free consultation today.",
   generator: 'Nextjs15',
   icons: {
     icon: [
