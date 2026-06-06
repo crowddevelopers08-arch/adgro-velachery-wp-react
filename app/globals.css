@@ -126,4 +126,15 @@
     @apply bg-background text-foreground;
     font-family: var(--font-outfit);
   }
+
+  button,
+  [role="button"],
+  a {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
 }

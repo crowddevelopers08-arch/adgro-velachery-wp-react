@@ -22,13 +22,146 @@ const HAIR_LOSS_STAGE_OPTIONS = [
   { id: "stage-5", label: "Stage 5", imageSrc: "/st5.jpeg" },
 ];
 
+interface FormData {
+  name: string;
+  phone: string;
+  email: string;
+  concerns: string[];
+  hairLossStage: string;
+  willingToVisit: string;
+}
+
+interface FormFieldsProps {
+  isMobile: boolean;
+  formData: FormData;
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  handleConcernToggle: (concern: string) => void;
+  handleSubmit: (e: React.FormEvent) => void;
+  isSubmitting: boolean;
+}
+
+const FormFields = ({
+  isMobile,
+  formData,
+  handleInputChange,
+  handleConcernToggle,
+  handleSubmit,
+  isSubmitting,
+}: FormFieldsProps) => (
+  <form onSubmit={handleSubmit} noValidate className={isMobile ? "space-y-3" : "space-y-4"}>
+    <input
+      type="text"
+      name="name"
+      value={formData.name}
+      onChange={handleInputChange}
+      placeholder="Your Full Name"
+      className="w-full bg-transparent border-b border-gray-600 focus:outline-none py-2 px-2 text-sm"
+      disabled={isSubmitting}
+    />
+    <input
+      type="tel"
+      name="phone"
+      value={formData.phone}
+      onChange={handleInputChange}
+      placeholder="Valid 10 Digit Phone No."
+      className="w-full bg-transparent border-b border-gray-600 focus:outline-none py-2 px-2 text-sm"
+      disabled={isSubmitting}
+    />
+    <input
+      type="email"
+      name="email"
+      value={formData.email}
+      onChange={handleInputChange}
+      placeholder="Example@gmail.com"
+      className="w-full bg-transparent border-b border-gray-600 focus:outline-none py-2 px-2 text-sm"
+      disabled={isSubmitting}
+    />
+
+    <div className="pt-1">
+      <p className="text-xs text-gray-400 mb-2">What Are Your Concerns</p>
+      <div className="flex flex-wrap gap-2">
+        {CONCERN_OPTIONS.map((concern, index) => (
+          <label key={index} className="flex items-center gap-1 bg-[#2c2c2c] px-3 py-1.5 rounded-full text-xs cursor-pointer hover:bg-[#3c3c3c] transition">
+            <input
+              type="checkbox"
+              checked={formData.concerns.includes(concern)}
+              onChange={() => handleConcernToggle(concern)}
+              className="h-3 w-3 accent-[#e82625]"
+              disabled={isSubmitting}
+            />
+            <span>{concern}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <div className="pt-1">
+      <p className="text-xs text-gray-400 mb-2">Select Your Hair Loss Stage</p>
+      <div className="grid grid-cols-5 gap-2">
+        {HAIR_LOSS_STAGE_OPTIONS.map((stage) => (
+          <label
+            key={stage.id}
+            className={`cursor-pointer overflow-hidden rounded-xl border transition ${
+              formData.hairLossStage === stage.label
+                ? "border-[#e82625] ring-2 ring-[#e82625]/40"
+                : "border-gray-700 hover:border-gray-500"
+            } bg-[#2c2c2c] ${isSubmitting ? "opacity-60 pointer-events-none" : ""}`}
+          >
+            <input
+              type="radio"
+              name="hairLossStage"
+              value={stage.label}
+              checked={formData.hairLossStage === stage.label}
+              onChange={handleInputChange}
+              className="sr-only"
+              disabled={isSubmitting}
+            />
+            <div className="relative mx-auto h-14 w-14 bg-white">
+              <Image src={stage.imageSrc} alt={stage.label} fill sizes="56px" className="object-cover" />
+            </div>
+            <div className="py-1 text-center text-[10px] text-white font-medium">{stage.label}</div>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <div className="pt-1">
+      <p className="text-xs text-gray-400 mb-2">Are you willing to visit Adgro Velachery?</p>
+      <div className="flex gap-3">
+        {["yes", "no"].map((option) => (
+          <label key={option} className="flex items-center gap-2 bg-[#2c2c2c] px-3 py-2 rounded-full text-sm cursor-pointer hover:bg-[#3c3c3c] transition">
+            <input
+              type="radio"
+              name="willingToVisit"
+              value={option}
+              checked={formData.willingToVisit === option}
+              onChange={handleInputChange}
+              className="h-4 w-4 accent-[#e82625]"
+              disabled={isSubmitting}
+            />
+            <span>{option === "yes" ? "Yes" : "No"}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      disabled={isSubmitting}
+      className="mt-3 w-full bg-[#e82625] hover:bg-[#c41e1d] transition text-white py-3.5 px-8 rounded-[10px] text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      {isSubmitting ? "Sending..." : "Get My Free Consultation"}
+    </button>
+  </form>
+);
+
 const RequestCallbackSection = () => {
   const router = useRouter();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
     email: "",
-    concerns: [] as string[],
+    concerns: [],
     hairLossStage: "",
     willingToVisit: "",
   });
@@ -87,6 +220,7 @@ const RequestCallbackSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitStatus({ type: null, message: "" });
     if (!validateForm()) return;
     setShowConfirm(true);
   };
@@ -121,7 +255,7 @@ const RequestCallbackSection = () => {
       if (response.ok) {
         router.push("/thank-you");
       } else {
-        throw new Error(data.error || "Failed to submit form");
+        throw new Error(data.details || data.error || "Failed to submit form");
       }
     } catch (error) {
       setSubmitStatus({
@@ -132,117 +266,13 @@ const RequestCallbackSection = () => {
     }
   };
 
-  const FormFields = ({ isMobile }: { isMobile: boolean }) => (
-    <form onSubmit={handleSubmit} className={isMobile ? "space-y-3" : "space-y-4"}>
-      <input
-        type="text"
-        name="name"
-        value={formData.name}
-        onChange={handleInputChange}
-        placeholder="Your Full Name"
-        className="w-full bg-transparent border-b border-gray-600 focus:outline-none py-2 px-2 text-sm"
-        disabled={isSubmitting}
-        required
-      />
-      <input
-        type="tel"
-        name="phone"
-        value={formData.phone}
-        onChange={handleInputChange}
-        placeholder="Valid 10 Digit Phone No."
-        className="w-full bg-transparent border-b border-gray-600 focus:outline-none py-2 px-2 text-sm"
-        disabled={isSubmitting}
-        required
-      />
-      <input
-        type="email"
-        name="email"
-        value={formData.email}
-        onChange={handleInputChange}
-        placeholder="Example@gmail.com"
-        className="w-full bg-transparent border-b border-gray-600 focus:outline-none py-2 px-2 text-sm"
-        disabled={isSubmitting}
-      />
-
-      <div className="pt-1">
-        <p className="text-xs text-gray-400 mb-2">What Are Your Concerns</p>
-        <div className="flex flex-wrap gap-2">
-          {CONCERN_OPTIONS.map((concern, index) => (
-            <label key={index} className="flex items-center gap-1 bg-[#2c2c2c] px-3 py-1.5 rounded-full text-xs cursor-pointer hover:bg-[#3c3c3c] transition">
-              <input
-                type="checkbox"
-                checked={formData.concerns.includes(concern)}
-                onChange={() => handleConcernToggle(concern)}
-                className="h-3 w-3 accent-[#e82625]"
-                disabled={isSubmitting}
-              />
-              <span>{concern}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <div className="pt-1">
-        <p className="text-xs text-gray-400 mb-2">Select Your Hair Loss Stage</p>
-        <div className="grid grid-cols-5 gap-2">
-          {HAIR_LOSS_STAGE_OPTIONS.map((stage) => (
-            <label
-              key={stage.id}
-              className={`cursor-pointer overflow-hidden rounded-xl border transition ${
-                formData.hairLossStage === stage.label
-                  ? "border-[#e82625] ring-2 ring-[#e82625]/40"
-                  : "border-gray-700 hover:border-gray-500"
-              } bg-[#2c2c2c] ${isSubmitting ? "opacity-60 pointer-events-none" : ""}`}
-            >
-              <input
-                type="radio"
-                name="hairLossStage"
-                value={stage.label}
-                checked={formData.hairLossStage === stage.label}
-                onChange={handleInputChange}
-                className="sr-only"
-                disabled={isSubmitting}
-                required
-              />
-              <div className="relative mx-auto h-14 w-14 bg-white">
-                <Image src={stage.imageSrc} alt={stage.label} fill sizes="56px" className="object-cover" />
-              </div>
-              <div className="py-1 text-center text-[10px] text-white font-medium">{stage.label}</div>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <div className="pt-1">
-        <p className="text-xs text-gray-400 mb-2">Are you willing to visit Adgro Velachery?</p>
-        <div className="flex gap-3">
-          {["yes", "no"].map((option) => (
-            <label key={option} className="flex items-center gap-2 bg-[#2c2c2c] px-3 py-2 rounded-full text-sm cursor-pointer hover:bg-[#3c3c3c] transition">
-              <input
-                type="radio"
-                name="willingToVisit"
-                value={option}
-                checked={formData.willingToVisit === option}
-                onChange={handleInputChange}
-                className="h-4 w-4 accent-[#e82625]"
-                disabled={isSubmitting}
-                required
-              />
-              <span>{option === "yes" ? "Yes" : "No"}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="mt-3 w-full bg-[#e82625] hover:bg-[#c41e1d] transition text-white py-3.5 px-8 rounded-[10px] text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {isSubmitting ? "Sending..." : "Get My Free Consultation"}
-      </button>
-    </form>
-  );
+  const sharedFormProps = {
+    formData,
+    handleInputChange,
+    handleConcernToggle,
+    handleSubmit,
+    isSubmitting,
+  };
 
   return (
     <React.Fragment>
@@ -284,12 +314,12 @@ const RequestCallbackSection = () => {
         </div>
       )}
 
-      <section className="w-full bg-white py-8 md:py-12 lg:py-40">
+      <section id="form" className="w-full scroll-mt-24 bg-white py-8 md:py-12 lg:py-40">
         <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 flex justify-center">
           <div className="relative w-full lg:w-[1280px]">
 
             {/* MOBILE FORM */}
-            <div id="form" className="block lg:hidden w-full mb-6">
+            <div className="block lg:hidden w-full mb-6">
               <div className="bg-[#1c1c1c] text-white rounded-2xl p-6">
                 <h3 className="text-xl font-bold mb-1">
                   Get Your Free Hair Analysis - No Commitment, No Cost.
@@ -302,7 +332,7 @@ const RequestCallbackSection = () => {
                     {submitStatus.message}
                   </div>
                 )}
-                <FormFields isMobile={true} />
+                <FormFields isMobile={true} {...sharedFormProps} />
               </div>
             </div>
 
@@ -336,7 +366,7 @@ const RequestCallbackSection = () => {
                     {submitStatus.message}
                   </div>
                 )}
-                <FormFields isMobile={false} />
+                <FormFields isMobile={false} {...sharedFormProps} />
               </div>
             </div>
 
