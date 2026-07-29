@@ -39,7 +39,7 @@ export default function SimplePrivacyPolicyPage() {
             {/* Section 1 - Collection of Information */}
             <div>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-                1. Collection of Informations
+                1. Collection of Information
               </h2>
               <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-3 leading-relaxed">
                 We collect personal data such as your name, date of birth, address, phone number, email, and any identity proof details when you sign up or use our services. Sensitive data like bank/payment details or biometric data may be collected with your consent as required by law.
