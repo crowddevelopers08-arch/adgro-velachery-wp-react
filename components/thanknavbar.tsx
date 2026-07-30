@@ -19,7 +19,7 @@ type Props = {
 };
 
 export default function ThankTopBar({
-  logoSrc = "/ambatur-logo.jpg",
+  logoSrc = "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/ambatur-logo_r5v4vh.jpg",
   phone = "+91 8390856789",
   buttonText = "Call Now",
 }: Props) {

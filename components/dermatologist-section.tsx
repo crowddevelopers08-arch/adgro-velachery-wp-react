@@ -28,7 +28,7 @@ const DermatologistSection = () => {
         {/* 3. Image */}
         <div className="flex justify-center">
           <img
-            src="/transparent.png"
+            src="https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/transparent_c7i4df.png"
             alt="Dermatologists team"
             className="w-auto object-contain"
             style={{ height: "clamp(200px, 60vw, 320px)", mixBlendMode: "multiply" }}
@@ -74,7 +74,7 @@ const DermatologistSection = () => {
             }}
           />
           <img
-            src="/transparent.png"
+            src="https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/transparent_c7i4df.png"
             alt="Dermatologists team"
             className="relative z-10 w-auto object-contain object-bottom"
             style={{ height: "430px", maxHeight: "90%", mixBlendMode: "multiply" }}

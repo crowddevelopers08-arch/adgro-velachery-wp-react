@@ -7,27 +7,27 @@ const Creative = () => {
   
   const images = [
     {
-      src: "/n2.jpg",
+      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/n2_tu1724.jpg",
       alt: "Hair Transplant Results - Before and After - Case 1",
       technique: "Advanced Hair Transplant"
     },
     {
-      src: "/n4.jpg",
+      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/n4_bgcahs.jpg",
       alt: "Hair Transplant Results - Before and After - Case 2",
       technique: "Advanced Hair Transplant"
     },
     {
-      src: "/n1.jpg",
+      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/n1_ebzouz.jpg",
       alt: "Hair Transplant Results - Before and After - Case 3",
       technique: "Advanced Hair Transplant"
     },
         {
-      src: "/n3.jpg",
+      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/n3_y0exyw.jpg",
       alt: "Hair Transplant Results - Before and After - Case 2",
       technique: "Advanced Hair Transplant"
     },
     {
-      src: "/n5.jpg",
+      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/n5_v6ttwn.jpg",
       alt: "Hair Transplant Results - Before and After - Case 3",
       technique: "Advanced Hair Transplant"
     }

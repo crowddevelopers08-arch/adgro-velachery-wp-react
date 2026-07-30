@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-const desktopBanners = ["/banners.png", "/banners1.png"];
-const mobileBanners = ["/banner-mobile.png", "/mobile-banner1.png", "/mobile-banner3.png",];
+const desktopBanners = ["https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/banners_mgymqh.png", "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/banners1_pv5gjk.png"];
+const mobileBanners = ["https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/banner-mobile_suxvdv.png", "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/mobile-banner1_gyss1g.png", "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/mobile-banner3_amxxyz.png",];
 
 const BannerCtaSection = () => {
   const [currentDesktopSlide, setCurrentDesktopSlide] = useState(0);

@@ -5,12 +5,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 const images = [
-  { src: "/Before-After-1amba.jpg", alt: "Before After 1" },
-  { src: "/Before-After-2amba.jpg", alt: "Before After 2" },
-  { src: "/Before-After-3amba.jpg", alt: "Before After 3" },
-  { src: "/Before-After-4amba.jpg", alt: "Before After 4" },
-  { src: "/Before-After-5amba.jpg", alt: "Before After 5" },
-  { src: "/Before-After-6amba.jpg", alt: "Before After 6" },
+  { src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Before-After-1amba_hk9rdm.jpg", alt: "Before After 1" },
+  { src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Before-After-2amba_oxkkrh.jpg", alt: "Before After 2" },
+  { src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Before-After-3amba_jtxbx9.jpg", alt: "Before After 3" },
+  { src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Before-After-4amba_rdjsww.jpg", alt: "Before After 4" },
+  { src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Before-After-5amba_hpi7gb.jpg", alt: "Before After 5" },
+  { src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Before-After-6amba_hdopdm.jpg", alt: "Before After 6" },
 ];
 
 const ImageGridCarousel = () => {

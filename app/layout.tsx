@@ -17,23 +17,23 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/royafav.jpg",
+        url: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/royafav_ljlep1.jpg",
         sizes: "any",
       },
       {
-        url: "/royafav.jpg",
+        url: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/royafav_ljlep1.jpg",
         sizes: "16x16",
         type: "image/png",
       },
       {
-        url: "/royafav.jpg",
+        url: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/royafav_ljlep1.jpg",
         sizes: "32x32",
         type: "image/png",
       },
     ],
     apple: [
       {
-        url: "/royafav.jpg",
+        url: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/royafav_ljlep1.jpg",
         sizes: "180x180",
         type: "image/png",
       },
@@ -41,13 +41,13 @@ export const metadata: Metadata = {
     other: [
       {
         rel: "icon",
-        url: "/royafav.jpg",
+        url: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/royafav_ljlep1.jpg",
         sizes: "192x192",
         type: "image/png",
       },
       {
         rel: "icon",
-        url: "/royafav.jpg",
+        url: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/royafav_ljlep1.jpg",
         sizes: "512x512",
         type: "image/png",
       },

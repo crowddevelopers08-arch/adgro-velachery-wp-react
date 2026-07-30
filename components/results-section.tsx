@@ -5,32 +5,32 @@ const cards = [
   {
     tag: "Hair Loss",
     title: "Notice thinning, shedding, or bald spots? Our tailored solutions address your needs and revive your hair’s health",
-    image: "/Frame-2-1.png",
+    image: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Frame-2-1_uumofz.png",
   },
   {
     tag: "Baldness",
     title: "Regain a full head of hair and boost your confidence with advanced restoration techniques",
-    image: "/Frame-3-1.png",
+    image: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Frame-3-1_ltf80t.png",
   },
   {
     tag: "Hair Thinning",
     title: "Find effective treatments for pa tchy hair loss due to Alopecia Areata, promoting healthy hair growth.",
-    image: "/Frame-4-1.png",
+    image: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Frame-4-1_vaxw0g.png",
   },
   {
     tag: "Alopecia Areata",
     title: "Discover treatments for patchy hair loss from Alopecia Areata, promoting healthy growth and restoring",
-    image: "/Frame-5.png",
+    image: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Frame-5_abnphz.png",
   },
   {
     tag: "Receding Hairline",
     title: "Halt the progression of a receding hairline and reclaim your youthful look with personalized solutions",
-    image: "/Frame-6.png",
+    image: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Frame-6_uzpbu2.png",
   },
   {
     tag: "Genetic Hair Loss",
     title: "Combat hereditary hair loss patterns with personalized treatments, targeting the root cause",
-    image: "/Frame-7.png",
+    image: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Frame-7_jaqg3r.png",
   },
 ];
 

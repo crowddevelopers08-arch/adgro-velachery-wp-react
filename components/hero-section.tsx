@@ -7,19 +7,19 @@ const IVFHeroExact = () => {
   // Array of images for the carousel
   const carouselImages = [
     {
-      src: "/Slide-1.png",
+      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Slide-1_kfk7hn.png",
       alt: "Happy Family"
     },
     {
-      src: "/Slide-2.png", // Replace with your actual image path
+      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Slide-2_sebzps.png", // Replace with your actual image path
       alt: "Happy Patient 2"
     },
     {
-      src: "/Slide-3.png", // Replace with your actual image path
+      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Slide-3_ge4okz.png", // Replace with your actual image path
       alt: "Happy Patient 3"
     },
     {
-      src: "/Slide-2.png", // Replace with your actual image path
+      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/Slide-2_sebzps.png", // Replace with your actual image path
       alt: "Happy Patient 4"
     }
   ];
@@ -79,7 +79,7 @@ const IVFHeroExact = () => {
           <div className="flex justify-center lg:justify-start mb-4 lg:mb-6 max-[470px]:mb-6">
             <div className="overflow-hidden rounded-[16px] w-full max-[470px]:h-22 max-w-[350px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[400px] h-[70px] sm:h-[80px] md:h-[90px] lg:h-[100px]">
               <img
-                src="/add.png"
+                src="https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/add_deto8e.png"
                 alt="Additional Information"
                 className="w-full h-full object-cover"
               />

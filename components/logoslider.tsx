@@ -7,7 +7,7 @@ const LegacySection = () => {
       <div 
         className="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat z-0"
         style={{
-          backgroundImage: "url('/header-image.png')", // Replace with your background image path
+          backgroundImage: "url('https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/header-image_btatis.png')", // Replace with your background image path
         }}
       />
       
