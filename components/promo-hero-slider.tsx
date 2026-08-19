@@ -14,26 +14,26 @@ type HeroSlide = {
 const heroSlides: HeroSlide[] = [
   {
     id: 1,
-    desktopSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/banone_jlvga7.png",
-    mobileSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/mobbanone_b2qr3h.png",
+    desktopSrc: "/banone.png",
+    mobileSrc: "/mobbanone.png",
     alt: "Regen Pro 9 hair regrowth offer banner",
   },
   {
     id: 2,
-    desktopSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/bantwo_anfcg6.png",
-    mobileSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/mobbantwo_eno6oh.png",
+    desktopSrc: "/bantwo.png",
+    mobileSrc: "/mobbantwo.png",
     alt: "Cosmetic hair system offer banner",
   },
   {
     id: 3,
-    desktopSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/banthree_zunspk.png",
-    mobileSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/mobbanthree_mgg9n9.png",
+    desktopSrc: "/banthree.png",
+    mobileSrc: "/mobbanthree.png",
     alt: "Advanced gel PRP offer banner",
   },
   {
     id: 4,
-    desktopSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/banfour_br4bvk.png",
-    mobileSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/mobbanfour_pk8k9p.png",
+    desktopSrc: "/banfour.png",
+    mobileSrc: "/mobbanfour.png",
     alt: "Hair transplant journey offer banner",
   },
 ];

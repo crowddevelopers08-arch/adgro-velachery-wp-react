@@ -13,7 +13,7 @@ const LocationSection = () => {
 
       {/* Background image */}
       <img
-        src="https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/hair-loss-treatment_kssdnk.jpg"
+        src="/hair-loss-treatment.jpg"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover object-center"

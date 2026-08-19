@@ -7,17 +7,17 @@ const AdvertisementBanner = () => {
   
   const images = [
     {
-      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/wat1_mkvrii.jpeg",
+      src: "/wat1.jpeg",
       alt: "Hair Transplant Results - Before and After - Case 1",
       technique: "FUE Technique"
     },
     {
-      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/wat2_iul7cv.jpeg",
+      src: "/wat2.jpeg",
       alt: "Hair Transplant Results - Before and After - Case 2",
       technique: "DHI Technique"
     },
     {
-      src: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/wat3_ypdgrg.jpeg",
+      src: "/wat3.jpeg",
       alt: "Hair Transplant Results - Before and After - Case 3",
       technique: "Sapphire FUE"
     }

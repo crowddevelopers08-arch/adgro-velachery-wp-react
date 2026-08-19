@@ -31,8 +31,8 @@ export type Question =
   | { id: string; type: 'thankyou'; label: string };
 
 export const branding = {
-  logo: 'https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/ambatur-logo_r5v4vh.jpg',
-  avatar: 'https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/ambatur-logo_r5v4vh.jpg',
+  logo: '/ambatur-logo.jpg',
+  avatar: '/ambatur-logo.jpg',
   title: 'Advanced GroHair Velachery',
   subTitle: "Chennai's Trusted FUE Hair Transplant & Growth Therapy Clinic",
   brandText: 'Powered by',

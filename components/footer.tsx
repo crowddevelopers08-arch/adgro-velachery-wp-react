@@ -14,7 +14,7 @@ const Footer = () => {
           {/* LEFT – BRAND */}
           <div>
             <img
-              src="https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/logo2_raown7.png"
+              src="/logo2.png"
               alt="Advanced Grohair"
               className="h-12 mb-4"
             />

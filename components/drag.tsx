@@ -15,11 +15,11 @@ const CONCERN_OPTIONS = [
 ];
 
 const HAIR_LOSS_STAGE_OPTIONS = [
-  { id: "stage-1", label: "Stage 1", imageSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/st1_uzoyvw.jpeg" },
-  { id: "stage-2", label: "Stage 2", imageSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/st2_bxgqhx.jpeg" },
-  { id: "stage-3", label: "Stage 3", imageSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/st3_ttysou.jpeg" },
-  { id: "stage-4", label: "Stage 4", imageSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/st4_thh5lt.jpeg" },
-  { id: "stage-5", label: "Stage 5", imageSrc: "https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/st5_noj1zf.jpeg" },
+  { id: "stage-1", label: "Stage 1", imageSrc: "/st1.jpeg" },
+  { id: "stage-2", label: "Stage 2", imageSrc: "/st2.jpeg" },
+  { id: "stage-3", label: "Stage 3", imageSrc: "/st3.jpeg" },
+  { id: "stage-4", label: "Stage 4", imageSrc: "/st4.jpeg" },
+  { id: "stage-5", label: "Stage 5", imageSrc: "/st5.jpeg" },
 ];
 
 interface FormData {
@@ -346,7 +346,7 @@ const RequestCallbackSection = () => {
                   I started seeing results within the first two sessions. Four months in, my hair fall has reduced drastically. The doctor was warm, patient, and genuinely cared about my progress.
                 </p>
                 <div className="flex items-center justify-center lg:justify-start gap-3">
-                  <img src="https://res.cloudinary.com/cbqvdlot/image/upload/v1785397756/unnamed_x3w4gf.png" alt="Archana Pandian" className="w-12 h-12 rounded-full object-cover" />
+                  <img src="/unnamed.png" alt="Archana Pandian" className="w-12 h-12 rounded-full object-cover" />
                   <p className="font-semibold text-[15px]">Archana Pandian, Velachery Patient</p>
                 </div>
               </div>
