@@ -1,13 +1,11 @@
 import type { Metadata } from 'next';
-import styles from '@/components/sales/sales.module.css';
-import { salesFontVariables } from '@/components/sales/fonts';
+import { plusJakartaSans } from '@/components/sales/fonts';
 import IconSprite from '@/components/sales/icon-sprite';
 import SmoothScroll from '@/components/sales/smooth-scroll';
 import SalesHeader from '@/components/sales/sales-header';
 import SalesHero from '@/components/sales/sales-hero';
 import TrustSeals from '@/components/sales/trust-seals';
 import ConditionsGrid from '@/components/sales/conditions-grid';
-import TreatmentsGrid from '@/components/sales/treatments-grid';
 import CallBanner from '@/components/sales/call-banner';
 import WhyTrustUs from '@/components/sales/why-trust-us';
 import LocationSection from '@/components/sales/location-section';
@@ -35,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function SalesPage() {
   return (
-    <div className={`${styles.salesRoot} ${salesFontVariables}`}>
+    <div className={`${plusJakartaSans.className} bg-[#FAFAFA] text-[#1A1A1A] antialiased leading-relaxed [&_*]:box-border`}>
       <IconSprite />
       <SmoothScroll />
       <SalesHeader />
@@ -44,10 +42,8 @@ export default function SalesPage() {
         <SalesHero />
         <TrustSeals />
         <ConditionsGrid />
-        <TreatmentsGrid />
-        <CallBanner />
         <WhyTrustUs />
-        <LocationSection />
+        
         <ResultsGallery />
         <TestimonialsSection />
         <ProcessSteps />
@@ -57,6 +53,7 @@ export default function SalesPage() {
         />
         <LeadFormDetailed />
         <FaqSection />
+        <LocationSection />
         <FinalCta />
       </main>
 

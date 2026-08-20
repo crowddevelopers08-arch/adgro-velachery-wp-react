@@ -1,11 +1,10 @@
 'use client'
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 const ClinicVideosResponsiveGrid = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const handleCallNow = () => {
     window.location.href = 'tel:+1234567890';
@@ -15,46 +14,34 @@ const ClinicVideosResponsiveGrid = () => {
     {
       id: 1,
       title: "Doctor Explaining Hair Loss Evaluation",
-      videoUrl: "/videos.mp4", // 🔁 Replace with your actual video path
+      videoId: "zFfyU2elucI",
       duration: "5:30"
     },
     {
       id: 2,
       title: "Regenera Activa Treatment Overview",
-      videoUrl: "/videos1.mp4", // 🔁 Replace with your actual video path
+      videoId: "4vTG4oHMzzA",
       duration: "8:45"
     },
     {
       id: 3,
       title: "In-Clinic Hair Treatment Process",
-      videoUrl: "/videos2.mp4", // 🔁 Replace with your actual video path
+      videoId: "97RecofOJ3s",
       duration: "6:15"
     },
     {
       id: 4,
       title: "Patient Consultation Experience",
-      videoUrl: "/videos3.mp4", // 🔁 Replace with your actual video path
+      videoId: "n8g9kLw_RSw",
       duration: "4:45"
     },
     {
       id: 5,
       title: "Advanced Hair Restoration Techniques",
-      videoUrl: "/videos4.mp4", // 🔁 Replace with your actual video path
+      videoId: "zXlTOuc_fwY",
       duration: "7:20"
     },
-    // {
-    //   id: 6,
-    //   title: "Post-Treatment Care Guidelines",
-    //   videoUrl: "/videos.mp4", // 🔁 Replace with your actual video path
-    //   duration: "5:50"
-    // }
   ];
-
-  const pauseAllVideos = () => {
-    videoRefs.current.forEach((ref) => {
-      if (ref) ref.pause();
-    });
-  };
 
   // For mobile: 1 video per slide
   const videosPerSlideMobile = 1;
@@ -65,27 +52,22 @@ const ClinicVideosResponsiveGrid = () => {
   const totalDesktopSlides = Math.ceil(videos.length / videosPerSlideDesktop);
 
   const nextSlide = () => {
-    pauseAllVideos();
     setCurrentSlide((prev) => (prev + 1) % totalMobileSlides);
   };
 
   const prevSlide = () => {
-    pauseAllVideos();
     setCurrentSlide((prev) => (prev - 1 + totalMobileSlides) % totalMobileSlides);
   };
 
   const nextSlideDesktop = () => {
-    pauseAllVideos();
     setCurrentSlide((prev) => (prev + 1) % totalDesktopSlides);
   };
 
   const prevSlideDesktop = () => {
-    pauseAllVideos();
     setCurrentSlide((prev) => (prev - 1 + totalDesktopSlides) % totalDesktopSlides);
   };
 
   const goToSlide = (index: number) => {
-    pauseAllVideos();
     setCurrentSlide(index);
   };
 
@@ -131,21 +113,16 @@ const ClinicVideosResponsiveGrid = () => {
                         className="bg-white rounded-xl overflow-hidden"
                       >
                         <div className="relative w-full bg-black" style={{ height: '600px' }}>
-                          <video
-                            ref={(el) => {
-                              const globalIndex = slideIndex;
-                              videoRefs.current[globalIndex] = el;
-                            }}
-                            src={video.videoUrl}
-                            className="absolute inset-0 w-full h-full object-cover"
-                            controls
-                            preload="metadata"
-                            playsInline
-                          >
-                            Your browser does not support the video tag.
-                          </video>
+                          <iframe
+                            src={`https://www.youtube.com/embed/${video.videoId}?rel=0&modestbranding=1`}
+                            title={video.title}
+                            className="absolute inset-0 w-full h-full border-0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            loading="lazy"
+                          />
                         </div>
-                        
+
                         {/* Optional: Add video title/caption */}
                       </div>
                     ))}
@@ -204,21 +181,16 @@ const ClinicVideosResponsiveGrid = () => {
                         className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
                       >
                         <div className="relative w-full bg-black" style={{ height: '600px' }}>
-                          <video
-                            ref={(el) => { 
-                              const globalIndex = slideIndex * 3 + videoIndex + videos.length;
-                              videoRefs.current[globalIndex] = el; 
-                            }}
-                            src={video.videoUrl}
-                            className="absolute inset-0 w-full h-full object-cover"
-                            controls
-                            preload="metadata"
-                            playsInline
-                          >
-                            Your browser does not support the video tag.
-                          </video>
+                          <iframe
+                            src={`https://www.youtube.com/embed/${video.videoId}?rel=0&modestbranding=1`}
+                            title={video.title}
+                            className="absolute inset-0 w-full h-full border-0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            loading="lazy"
+                          />
                         </div>
-                        
+
                       </div>
                     ))}
                   </div>

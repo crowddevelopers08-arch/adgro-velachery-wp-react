@@ -1,89 +1,203 @@
-import styles from './sales.module.css';
-import Reveal from './reveal';
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import { containerFull, section, eyebrow, h2, lede } from './classnames';
 
 const CONDITIONS = [
   {
     title: 'Alopecia Areata',
-    copy: 'Sudden, patchy hair loss usually has an identifiable trigger. We diagnose the cause first, then build a plan to get regrowth started.',
-    path: <circle cx="12" cy="12" r="8" strokeDasharray="3 4" />,
+    image: '/Alopecia.png',
+    points: ['Patchy hair loss diagnosis', 'Trigger identification', 'Personalised regrowth plan'],
   },
   {
     title: 'Receding Hairline',
-    copy: "A hairline that's moving back doesn't have to keep moving. We restore hairlines designed to suit your face — not a generic template.",
-    path: <path d="M4 15c4-6 12-6 16 0" />,
+    image: '/Receding.png',
+    points: ['Face-suited hairline design', 'Stops further recession', 'Natural-looking restoration'],
   },
   {
     title: 'Genetic Hair Loss',
-    copy: "A family history of baldness isn't the end of the story. We target the underlying cause with clinically guided treatment, not guesswork.",
-    path: (
-      <>
-        <path d="M6 4c4 3 8 3 12 8-4-3-8-3-12-8z" />
-        <path d="M6 20c4-3 8-3 12-8-4 3-8 3-12 8z" />
-      </>
-    ),
+    image: '/Genetic.png',
+    points: ['Family history assessment', 'Clinically guided treatment', 'Targeted root-cause therapy'],
   },
   {
     title: 'Hair Thinning',
-    copy: "Thinning responds best to early treatment. The sooner it's diagnosed, the more options — and hair — you get to keep.",
-    path: (
-      <>
-        <line x1="8" y1="6" x2="8" y2="18" />
-        <line x1="12" y1="9" x2="12" y2="18" />
-        <line x1="16" y1="12" x2="16" y2="18" />
-      </>
-    ),
+    image: '/HairThinning.png',
+    points: ['Early-stage treatment', 'Hair thinning diagnosis', 'Hair density preservation'],
   },
   {
     title: 'Baldness',
-    copy: "Whether you're at an early stage or further along, we build a restoration path suited to where you actually are today.",
-    path: <ellipse cx="12" cy="12" rx="7" ry="9" />,
+    image: '/Baldness.png',
+    points: ['Stage-based assessment', 'Custom restoration path', 'Early & advanced stage care'],
   },
   {
     title: 'Dandruff & Scalp Issues',
-    copy: 'Healthy hair starts at the scalp. We treat dandruff, seborrheic dermatitis and scalp inflammation at the source — not just the flakes.',
-    path: (
-      <>
-        <circle cx="9" cy="9" r="1.6" />
-        <circle cx="15" cy="8" r="1.2" />
-        <circle cx="12" cy="14" r="1.4" />
-        <circle cx="16" cy="16" r="1" />
-      </>
-    ),
+    image: '/Dandruff.png',
+    points: ['Dandruff treatment', 'Seborrheic dermatitis care', 'Scalp inflammation relief'],
   },
 ];
 
+const ROW_1 = CONDITIONS.slice(0, 3);
+const ROW_2 = CONDITIONS.slice(3, 6);
+
+// Infinite marquee with a seamless loop — pauses on hover
+function InfiniteMarquee({
+  children,
+  direction = 'left',
+  speed = 0.4,
+  gap = 20,
+}: {
+  children: React.ReactNode;
+  direction?: 'left' | 'right';
+  speed?: number;
+  gap?: number;
+}) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const setRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const animationRef = useRef<number>();
+  const positionRef = useRef(0);
+  const lastTimeRef = useRef(0);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    const set = setRef.current;
+    if (!track || !set) return;
+
+    const setWidth = set.scrollWidth;
+    positionRef.current = direction === 'right' ? -setWidth : 0;
+    let running = true;
+
+    const animate = (timestamp: number) => {
+      if (!running) return;
+
+      if (!isHovered) {
+        if (lastTimeRef.current === 0) lastTimeRef.current = timestamp;
+        const delta = (timestamp - lastTimeRef.current) / 16;
+        lastTimeRef.current = timestamp;
+
+        const step = direction === 'left' ? -speed : speed;
+        positionRef.current += step * delta;
+
+        if (direction === 'left' && Math.abs(positionRef.current) >= setWidth) {
+          positionRef.current = 0;
+        }
+        if (direction === 'right' && positionRef.current >= 0) {
+          positionRef.current = -setWidth;
+        }
+
+        track.style.transform = `translateX(${positionRef.current}px)`;
+        track.style.willChange = 'transform';
+      } else {
+        lastTimeRef.current = 0;
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      running = false;
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [direction, speed, isHovered]);
+
+  return (
+    <div
+      className="relative overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Left shadow */}
+      <div className="absolute left-0 top-0 bottom-0 w-10 sm:w-16 bg-gradient-to-r from-[#FAFAFA] to-transparent z-30 pointer-events-none" />
+      {/* Right shadow */}
+      <div className="absolute right-0 top-0 bottom-0 w-10 sm:w-16 bg-gradient-to-l from-[#FAFAFA] to-transparent z-30 pointer-events-none" />
+
+      <div ref={trackRef} className="flex will-change-transform" style={{ gap: `${gap}px` }}>
+        <div ref={setRef} className="flex" style={{ gap: `${gap}px` }}>
+          {children}
+        </div>
+        <div className="flex" aria-hidden="true" style={{ gap: `${gap}px` }}>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ConditionCard({ cond }: { cond: (typeof CONDITIONS)[number] }) {
+  return (
+    <div className="group flex items-stretch w-[320px] sm:w-[360px] md:w-[380px] shrink-0 min-h-[230px] sm:min-h-[240px] overflow-hidden rounded-[16px] border border-[#DC2626]/25 bg-white transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
+      {/* Text content */}
+      <div className="flex-1 min-w-0 px-5 py-5 flex flex-col justify-center">
+        <h3 className="mb-2 text-[18px] sm:text-[19px] font-extrabold leading-[1.15] tracking-[-0.01em] text-[#DC2626] uppercase">
+          {cond.title}
+        </h3>
+        <ul className="mt-1.5 space-y-2">
+          {cond.points.map((point) => (
+            <li key={point} className="flex items-start gap-2 text-[13px] sm:text-[13.5px] font-medium leading-[1.35] text-[#475569]">
+              <span className="mt-[4px] text-[10px] text-[#DC2626]">●</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Image panel — fully contained, nothing cropped */}
+      <div className="relative w-[120px] sm:w-[140px] shrink-0 bg-[#FDF2F2] flex items-center justify-center p-3">
+        <img
+          src={cond.image}
+          alt={cond.title}
+          className="w-full h-auto max-h-full object-contain transition-transform duration-500 group-hover:scale-105"
+        />
+        <span className="absolute bottom-2 right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white shadow-[0_4px_10px_rgba(0,0,0,0.15)] flex items-center justify-center">
+          <svg
+            className="w-3.5 h-3.5 text-[#DC2626]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" />
+          </svg>
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function ConditionsGrid() {
   return (
-    <section className={`${styles.section} ${styles.sectionPaper}`} id="conditions">
-      <div className={styles.container}>
-        <div className={styles.headRow}>
-          <div>
-            <span className={styles.eyebrow}>We Diagnose Before We Treat</span>
-            <h2 className={styles.h2}>
-              Hair Fall Doesn&rsquo;t Wait — <br />
+    <section className={`${section} bg-[#FAFAFA]`} id="conditions">
+      <div className={containerFull}>
+        <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
+          <div className="lg:w-[400px] xl:w-[460px] shrink-0">
+            <span className={eyebrow}>We Diagnose Before We Treat</span>
+            <h2 className={h2}>
+              Hair Fall Doesn&rsquo;t Wait <br />
               Neither Should Your Answers
             </h2>
-            <p className={styles.lede}>
+            <p className={lede}>
               Whatever stage you&rsquo;re at — the first thin patch or years of gradual recession —
               the earlier it&rsquo;s diagnosed correctly, the more options you have. Our Velachery
               specialists start every case with a proper diagnosis, not a sales pitch.
             </p>
           </div>
-        </div>
-        <div className={styles.condGrid}>
-          {CONDITIONS.map((cond, i) => (
-            <Reveal key={cond.title} delay={i * 60}>
-              <div className={styles.condCard}>
-                <span className={styles.condCardIcon}>
-                  <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                    {cond.path}
-                  </svg>
-                </span>
-                <h4>{cond.title}</h4>
-                <p>{cond.copy}</p>
-              </div>
-            </Reveal>
-          ))}
+
+          <div className="flex-1 min-w-0 flex flex-col gap-4">
+            <InfiniteMarquee direction="left" speed={0.35} gap={16}>
+              {ROW_1.map((cond) => (
+                <ConditionCard key={cond.title} cond={cond} />
+              ))}
+            </InfiniteMarquee>
+            <InfiniteMarquee direction="right" speed={0.35} gap={16}>
+              {ROW_2.map((cond) => (
+                <ConditionCard key={cond.title} cond={cond} />
+              ))}
+            </InfiniteMarquee>
+          </div>
         </div>
       </div>
     </section>

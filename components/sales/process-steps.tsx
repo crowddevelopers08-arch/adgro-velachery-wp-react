@@ -1,4 +1,5 @@
-import styles from './sales.module.css';
+import { Fragment } from 'react';
+import { container, sectionTight, eyebrow, h2 } from './classnames';
 
 const STEPS = [
   {
@@ -23,22 +24,56 @@ const STEPS = [
   },
 ];
 
+const numBase =
+  'font-mono text-sm font-semibold text-[#2B2B2B] w-11 h-11 border-[1.5px] border-[#DC2626] rounded-full flex items-center justify-center shrink-0';
+const numActive = 'bg-[#DC2626] text-white border-[#DC2626]';
+
 export default function ProcessSteps() {
   return (
-    <section className={`${styles.sectionTight} ${styles.sectionCanvas}`}>
-      <div className={styles.container}>
-        <span className={styles.eyebrow}>How It Works</span>
-        <h2 className={styles.h2}>Your Path to Fuller Hair, in Four Clear Steps</h2>
-        <div className={styles.processGrid} style={{ marginTop: 36 }}>
+    <section className={`${sectionTight} bg-[#FAFAFA]`}>
+      <div className={container}>
+        <span className={eyebrow}>How It Works</span>
+        <h2 className={h2}>Your Path to Fuller Hair, in Four Clear Steps</h2>
+
+        {/* Connected step track — desktop only */}
+        <div className="hidden min-[900px]:flex items-center mt-9">
+          {STEPS.map((step, i) => (
+            <Fragment key={step.n}>
+              <span className={`${numBase} ${i === 0 ? numActive : ''}`}>{step.n}</span>
+              {i < STEPS.length - 1 && (
+                <span className="flex items-center flex-1 mx-1" aria-hidden="true">
+                  <i className="flex-1 h-0 border-t-2 border-dotted border-[#E8E8E8]" />
+                  <svg
+                    className="w-4 h-4 text-[#DC2626] shrink-0 mx-1"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="7 4 15 12 7 20" />
+                    <polyline points="13 4 21 12 13 20" />
+                  </svg>
+                  <i className="flex-1 h-0 border-t-2 border-dotted border-[#E8E8E8]" />
+                </span>
+              )}
+            </Fragment>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 min-[900px]:grid-cols-4 gap-0 min-[900px]:gap-[22px] mt-9">
           {STEPS.map((step, i) => (
             <div
-              className={`${styles.processStep} ${i === STEPS.length - 1 ? styles.processStepLast : ''}`}
+              className={`grid grid-cols-[auto_1fr] min-[900px]:grid-cols-1 gap-[18px] py-[26px] min-[900px]:py-0 border-t min-[900px]:border-t-0 border-[#E8E8E8] ${
+                i === STEPS.length - 1 ? 'border-b min-[900px]:border-b-0' : ''
+              }`}
               key={step.n}
             >
-              <span className={styles.processNum}>{step.n}</span>
+              <span className={`${numBase} min-[900px]:hidden`}>{step.n}</span>
               <div>
-                <h4>{step.title}</h4>
-                <p>{step.copy}</p>
+                <h4 className="text-lg mb-1.5 font-extrabold text-[#111111]">{step.title}</h4>
+                <p className="text-[14.5px] text-[#6B6B6B] max-w-[520px]">{step.copy}</p>
               </div>
             </div>
           ))}

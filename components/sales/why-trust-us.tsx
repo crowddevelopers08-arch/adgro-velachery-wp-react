@@ -1,55 +1,44 @@
-import styles from './sales.module.css';
+import { container, sectionTight, eyebrow, h2, btnBase, btnOutline } from './classnames';
 
 const CHECKS = [
-  'Board-certified doctors & trichologists',
-  'FDA-approved equipment, every clinic',
-  'No-cost EMI — transparent pricing',
-  '24/7 patient support line',
-  '2,000+ documented transformations',
-  '60+ clinics across India',
+  'Board-Certified Doctors',
+  'FDA-Approved Equipment',
+  'No-Cost EMI',
+  '24/7 Support Line',
+  '2,000+ Transformations',
+  '60+ Clinics Nationwide',
 ];
 
 export default function WhyTrustUs() {
   return (
-    <section className={`${styles.sectionTight} ${styles.sectionCanvas}`} id="why-trust-us">
-      <div className={`${styles.container} ${styles.whyGrid}`}>
-        <div className={styles.whyCopy}>
-          <span className={styles.eyebrow}>Why Chennai Chooses Us</span>
-          <h2 className={styles.h2}>
-            Not Just a Hair Clinic — a Team Accountable to Your Results
-          </h2>
-          <p>
-            There&rsquo;s no shortage of hair clinics in Chennai. What actually sets Advanced
-            GroHair Velachery apart is simple: we&rsquo;re measured by your outcome, not by how
-            many sessions we can sell you.
-          </p>
-          <p>
-            Across 60+ clinics and 2,000+ documented transformations nationwide, our Velachery
-            team holds the same standard everywhere — board-certified doctors, FDA-approved
-            equipment, transparent no-cost EMI, and a support line that&rsquo;s open 24 hours a
-            day, because hair loss doesn&rsquo;t keep business hours.
-          </p>
-          <ul className={styles.checkList}>
-            {CHECKS.map((c) => (
-              <li key={c}>
-                <svg className={styles.icon}>
-                  <use href="#sales-i-check" />
-                </svg>
-                {c}
-              </li>
-            ))}
-          </ul>
-          <div style={{ marginTop: 28 }}>
-            <a href="#lead-form" className={`${styles.btn} ${styles.btnOutline}`}>
-              Book Free Consultation →
-            </a>
-          </div>
+    <section className={`${sectionTight} bg-white`} id="why-trust-us">
+      <div className={container}>
+        <span className={eyebrow}>Why Chennai Chooses Us</span>
+        <h2 className={h2}>Not Just a Hair Clinic a Team Accountable to Your Results</h2>
+        <p className="text-[#6B6B6B] text-[15.5px] mt-3.5 leading-[1.65] max-w-[560px]">
+          There&rsquo;s no shortage of hair clinics in Chennai. What sets us apart is simple
+          we&rsquo;re measured by your outcome, not by how many sessions we can sell you, and we
+          hold the same standard across every clinic, every time.
+        </p>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 min-[900px]:grid-cols-6 gap-2.5 mt-6">
+          {CHECKS.map((c) => (
+            <div
+              key={c}
+              className="flex items-center gap-2 px-3 py-2.5 rounded-[10px] border border-[#E8E8E8] bg-[#FAFAFA]"
+            >
+              <svg className="w-4 h-4 text-[#DC2626] stroke-current fill-none stroke-2 shrink-0" strokeLinecap="round" strokeLinejoin="round">
+                <use href="#sales-i-check" />
+              </svg>
+              <span className="text-[13px] font-semibold text-[#1A1A1A] leading-[1.2]">{c}</span>
+            </div>
+          ))}
         </div>
-        <div className={styles.whyMedia}>
-          <img
-            src="/hair-loss-treatment.jpg"
-            alt="Advanced GroHair specialist team"
-          />
+
+        <div className="mt-6">
+          <a href="#lead-form" className={`${btnBase} ${btnOutline}`}>
+            Book Free Consultation →
+          </a>
         </div>
       </div>
     </section>

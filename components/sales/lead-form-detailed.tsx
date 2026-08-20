@@ -1,8 +1,22 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import styles from './sales.module.css';
 import { SALES_CONTACT, SALES_FORM_NAME } from './constants';
+import {
+  container,
+  section,
+  eyebrow,
+  h2,
+  lede,
+  icon,
+  btnBase,
+  btnPrimary,
+  btnBlock,
+  btnLg,
+  field,
+  fieldLabel,
+  fieldInput,
+} from './classnames';
 
 const CONCERNS = [
   'Hair Loss',
@@ -67,31 +81,32 @@ export default function LeadFormDetailed() {
   }
 
   return (
-    <section className={`${styles.section} ${styles.sectionPaper}`} id="lead-form">
-      <div className={styles.container}>
-        <div style={{ textAlign: 'center', maxWidth: 640, marginInline: 'auto', marginBottom: 36 }}>
-          <span className={styles.eyebrow} style={{ justifyContent: 'center' }}>
-            Free Hair Analysis
-          </span>
-          <h2 className={styles.h2}>Tell Us Your Concern — We&rsquo;ll Call You Back Within 24 Hours</h2>
-          <p className={styles.lede} style={{ marginInline: 'auto' }}>
+    <section className={`${section} bg-[#FAFAFA]`} id="lead-form">
+      <div className={container}>
+        <div className="text-center max-w-[640px] mx-auto mb-9">
+          <span className={`${eyebrow} justify-center`}>Free Hair Analysis</span>
+          <h2 className={h2}>Tell Us Your Concern We&rsquo;ll Call You Back Within 24 Hours</h2>
+          <p className={`${lede} mx-auto`}>
             No commitment. No cost. Just an honest assessment from a specialist at our Velachery
             center.
           </p>
         </div>
 
-        <div className={styles.leadFormCard} style={{ maxWidth: 900, marginInline: 'auto' }}>
+        <div className="bg-white rounded-2xl p-[clamp(24px,4vw,44px)] shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] border border-[#E8E8E8] max-w-[1100px] mx-auto">
           {!submitted ? (
             <form onSubmit={onSubmit}>
-              <div className={styles.formGrid}>
+              <div className="grid grid-cols-1 min-[960px]:grid-cols-2 gap-7 min-[960px]:gap-10">
                 <div>
-                  <div className={styles.field}>
-                    <label htmlFor="lf-concern">What are your concerns?</label>
+                  <div className={field}>
+                    <label htmlFor="lf-concern" className={fieldLabel}>
+                      What are your concerns?
+                    </label>
                     <select
                       id="lf-concern"
                       required
                       value={concern}
                       onChange={(e) => setConcern(e.target.value)}
+                      className={fieldInput}
                     >
                       <option value="" disabled>
                         Select your concern
@@ -102,56 +117,84 @@ export default function LeadFormDetailed() {
                     </select>
                   </div>
 
-                  <div className={styles.field}>
-                    <label>Select your hair loss stage</label>
-                    <div className={styles.stageSelect}>
+                  <div className={field}>
+                    <label className={fieldLabel}>Select your hair loss stage</label>
+                    <div className="grid grid-cols-5 gap-2.5">
                       {STAGES.map((s) => (
-                        <label className={styles.stageOpt} key={s.value}>
+                        <label className="cursor-pointer text-center relative block" key={s.value}>
                           <input
                             type="radio"
                             name="stage"
                             value={s.value}
                             checked={stage === s.value}
                             onChange={() => setStage(s.value)}
+                            className="absolute opacity-0 w-px h-px"
                           />
-                          <figure className={stage === s.value ? styles.stageOptChecked : ''}>
-                            <img src={s.src} alt={`Hair loss ${s.label}`} />
+                          <figure
+                            className={`relative m-0 border-[1.5px] rounded-xl overflow-hidden transition-colors duration-150 ${
+                              stage === s.value ? 'border-[#DC2626]' : 'border-[#E8E8E8] hover:border-[#F3B4B4]'
+                            }`}
+                          >
+                            <img
+                              src={s.src}
+                              alt={`Hair loss ${s.label}`}
+                              className="w-full aspect-square object-cover"
+                            />
+                            {stage === s.value && (
+                              <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#DC2626] text-white flex items-center justify-center">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" className="w-2.5 h-2.5">
+                                  <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                              </span>
+                            )}
                           </figure>
-                          <span>{s.label}</span>
+                          <span className={`block text-[11.5px] mt-1.5 font-semibold ${stage === s.value ? 'text-[#DC2626]' : 'text-[#6B6B6B]'}`}>
+                            {s.label}
+                          </span>
                         </label>
                       ))}
                     </div>
                   </div>
 
-                  <div className={styles.field}>
-                    <label>Are you able to visit our Velachery center?</label>
-                    <div className={styles.radioRow}>
-                      <div className={styles.radioPill}>
+                  <div className={field}>
+                    <label className={fieldLabel}>Are you able to visit our Velachery center?</label>
+                    <div className="flex gap-3">
+                      <div className="flex-1 relative">
                         <input
                           type="radio"
                           id="visit-yes"
                           name="visit"
                           checked={visit === 'yes'}
                           onChange={() => setVisit('yes')}
+                          className="absolute opacity-0 w-px h-px"
                         />
                         <label
                           htmlFor="visit-yes"
-                          className={`${styles.radioPillLabel} ${visit === 'yes' ? styles.radioPillLabelChecked : ''}`}
+                          className={`block text-center p-3 border-[1.5px] rounded-full text-[14.5px] font-semibold cursor-pointer transition-colors duration-150 ${
+                            visit === 'yes'
+                              ? 'border-[#DC2626] bg-[#DC2626] text-white'
+                              : 'border-[#E8E8E8] text-[#6B6B6B] bg-white hover:border-[#DC2626]'
+                          }`}
                         >
                           Yes
                         </label>
                       </div>
-                      <div className={styles.radioPill}>
+                      <div className="flex-1 relative">
                         <input
                           type="radio"
                           id="visit-no"
                           name="visit"
                           checked={visit === 'no'}
                           onChange={() => setVisit('no')}
+                          className="absolute opacity-0 w-px h-px"
                         />
                         <label
                           htmlFor="visit-no"
-                          className={`${styles.radioPillLabel} ${visit === 'no' ? styles.radioPillLabelChecked : ''}`}
+                          className={`block text-center p-3 border-[1.5px] rounded-full text-[14.5px] font-semibold cursor-pointer transition-colors duration-150 ${
+                            visit === 'no'
+                              ? 'border-[#DC2626] bg-[#DC2626] text-white'
+                              : 'border-[#E8E8E8] text-[#6B6B6B] bg-white hover:border-[#DC2626]'
+                          }`}
                         >
                           No
                         </label>
@@ -161,9 +204,11 @@ export default function LeadFormDetailed() {
                 </div>
 
                 <div>
-                  <div className={styles.twoCol}>
-                    <div className={styles.field}>
-                      <label htmlFor="lf-name">Full name</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div className={field}>
+                      <label htmlFor="lf-name" className={fieldLabel}>
+                        Full name
+                      </label>
                       <input
                         id="lf-name"
                         type="text"
@@ -171,10 +216,13 @@ export default function LeadFormDetailed() {
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        className={fieldInput}
                       />
                     </div>
-                    <div className={styles.field}>
-                      <label htmlFor="lf-phone">Phone number</label>
+                    <div className={field}>
+                      <label htmlFor="lf-phone" className={fieldLabel}>
+                        Phone number
+                      </label>
                       <input
                         id="lf-phone"
                         type="tel"
@@ -182,51 +230,56 @@ export default function LeadFormDetailed() {
                         required
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
+                        className={fieldInput}
                       />
                     </div>
                   </div>
-                  <div className={styles.field}>
-                    <label htmlFor="lf-email">Email (optional)</label>
+                  <div className={field}>
+                    <label htmlFor="lf-email" className={fieldLabel}>
+                      Email (optional)
+                    </label>
                     <input
                       id="lf-email"
                       type="email"
                       placeholder="you@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      className={fieldInput}
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={submitting}
-                    className={`${styles.btn} ${styles.btnPrimary} ${styles.btnBlock} ${styles.btnLg}`}
-                    style={{ marginTop: 8 }}
+                    className={`${btnBase} ${btnPrimary} ${btnBlock} ${btnLg} mt-2`}
                   >
                     {submitting ? 'Sending…' : 'Get My Free Consultation'}
                   </button>
-                  {error && <p className={styles.formError}>{error}</p>}
-                  <p className={styles.formNote}>
-                    <svg className={styles.icon}>
+                  {error && <p className="text-[13px] text-[#B3261E] mt-2.5">{error}</p>}
+                  <p className="flex items-center gap-2 text-[12.5px] text-[#6B6B6B] mt-3.5">
+                    <svg className={`${icon} w-3.5 h-3.5 text-[#DC2626] shrink-0`}>
                       <use href="#sales-i-clock" />
-                    </svg>{' '}
-                    We&rsquo;ll call you back within 24 hours — or call us now at{' '}
-                    <a href={`tel:${SALES_CONTACT.phoneTel}`} style={{ fontWeight: 700, color: 'var(--brass-text)' }}>
-                      {SALES_CONTACT.phoneDisplay}
-                    </a>
-                    .
+                    </svg>
+                    We&rsquo;ll call you back within 24 hours.
                   </p>
+                  <a
+                    href={`tel:${SALES_CONTACT.phoneTel}`}
+                    className="inline-block text-[12.5px] font-semibold text-[#DC2626] mt-1"
+                  >
+                    Or call us now — {SALES_CONTACT.phoneDisplay}
+                  </a>
                 </div>
               </div>
             </form>
           ) : (
-            <div className={`${styles.formSuccess} ${styles.formSuccessVisible}`}>
-              <svg className={styles.icon}>
+            <div className="text-center px-2 py-5">
+              <svg className={`${icon} w-10 h-10 text-[#DC2626] mx-auto mb-2.5`}>
                 <use href="#sales-i-check" />
               </svg>
-              <h4>Thank you — your request is in.</h4>
-              <p>
+              <h4 className="text-lg font-extrabold text-[#111111] mb-1.5">Thank you — your request is in.</h4>
+              <p className="text-[#6B6B6B] text-sm">
                 A specialist from our Velachery center will call you back within 24 hours to walk
                 through your free hair analysis. Need to speak now?{' '}
-                <a href={`tel:${SALES_CONTACT.phoneTel}`} style={{ color: 'var(--brass-text)', fontWeight: 700 }}>
+                <a href={`tel:${SALES_CONTACT.phoneTel}`} className="text-[#DC2626] font-bold">
                   Call {SALES_CONTACT.phoneDisplay}
                 </a>
                 .

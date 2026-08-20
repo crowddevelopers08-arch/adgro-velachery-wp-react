@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import styles from './sales.module.css';
 import { SALES_CONTACT } from './constants';
+import { eyebrow, h2, icon, sectionTight } from './classnames';
 
 const FAQS = [
   {
@@ -31,42 +31,65 @@ const FAQS = [
   },
 ];
 
+// Split FAQs into two columns
+const leftColumnFAQs = FAQS.slice(0, 3);
+const rightColumnFAQs = FAQS.slice(3, 6);
+
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  return (
-    <section className={`${styles.sectionTight} ${styles.sectionCanvas}`} id="faq">
-      <div className={styles.container} style={{ maxWidth: 820 }}>
-        <span className={styles.eyebrow}>Common Questions</span>
-        <h2 className={styles.h2}>Questions Chennai Patients Ask Us Every Day</h2>
+  const renderFAQItem = (item: typeof FAQS[0], index: number) => {
+    // Use a unique key that combines column position and index
+    const globalIndex = FAQS.indexOf(item);
+    const isOpen = openIndex === globalIndex;
 
-        <div className={styles.faqList} style={{ marginTop: 32 }}>
-          {FAQS.map((item, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div className={`${styles.faqItem} ${isOpen ? styles.faqItemOpen : ''}`} key={item.q}>
-                <button
-                  type="button"
-                  className={styles.faqQ}
-                  aria-expanded={isOpen}
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                >
-                  {item.q}
-                  <svg className={styles.icon}>
-                    <use href="#sales-i-chevron" />
-                  </svg>
-                </button>
-                <div className={styles.faqA} style={{ maxHeight: isOpen ? 400 : 0 }}>
-                  <p>{item.a}</p>
-                </div>
-              </div>
-            );
-          })}
+    return (
+      <div className="border-b border-[#E8E8E8]" key={item.q}>
+        <button
+          type="button"
+          className="w-full text-left bg-transparent border-0 py-[22px] px-1 flex justify-between items-center gap-4 text-[17.5px] text-[#111111] font-semibold cursor-pointer"
+          aria-expanded={isOpen}
+          onClick={() => setOpenIndex(isOpen ? null : globalIndex)}
+        >
+          {item.q}
+          <svg
+            className={`${icon} w-5 h-5 text-[#2B2B2B] transition-transform duration-200 flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+          >
+            <use href="#sales-i-chevron" />
+          </svg>
+        </button>
+        <div
+          className="overflow-hidden transition-[max-height] duration-[250ms]"
+          style={{ maxHeight: isOpen ? 400 : 0 }}
+        >
+          <p className="px-1 pb-[22px] text-[#6B6B6B] text-[15px] max-w-[680px] leading-[1.65]">{item.a}</p>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <section className={`${sectionTight} bg-white`} id="faq">
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8">
+        <span className={eyebrow}>Common Questions</span>
+        <h2 className={h2}>Questions Chennai Patients Ask Us Every Day</h2>
+
+        {/* 2-column grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 border-t border-[#E8E8E8] mt-8">
+          <div className="border-t md:border-t-0 border-[#E8E8E8]">
+            {leftColumnFAQs.map((item, i) => renderFAQItem(item, i))}
+          </div>
+          <div className="border-t md:border-t-0 border-[#E8E8E8]">
+            {rightColumnFAQs.map((item, i) => renderFAQItem(item, i + 3))}
+          </div>
         </div>
 
-        <div className={styles.faqFoot}>
-          <span style={{ color: 'var(--text-muted)', fontSize: 14.5 }}>Still have questions?</span>
-          <a href={`tel:${SALES_CONTACT.phoneTel}`} className={`${styles.btn} ${styles.btnOutline}`}>
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <span className="text-[#6B6B6B] text-[14.5px]">Still have questions?</span>
+          <a 
+            href={`tel:${SALES_CONTACT.phoneTel}`} 
+            className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-[#1A1A1A] border border-[#1A1A1A] rounded-full hover:bg-[#333333] hover:border-[#333333] transition-all duration-200"
+          >
             Call Us Now
           </a>
         </div>

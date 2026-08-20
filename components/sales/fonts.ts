@@ -1,25 +1,12 @@
-import { Newsreader, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 
-export const newsreader = Newsreader({
+/**
+ * Single clean geometric sans across the page — matches the sans-serif,
+ * bold-headline / light-body typographic system used by both design
+ * references (Clove Dental, Toothsi/MakeO).
+ */
+export const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  style: ['normal', 'italic'],
-  weight: ['400', '500', '600'],
-  variable: '--sales-font-display',
+  weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
 });
-
-export const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--sales-font-body',
-  display: 'swap',
-});
-
-export const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['500', '600'],
-  variable: '--sales-font-mono',
-  display: 'swap',
-});
-
-export const salesFontVariables = `${newsreader.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`;
