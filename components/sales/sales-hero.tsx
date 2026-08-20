@@ -61,7 +61,7 @@ export default function SalesHero() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-[#FAFAFA] pt-[clamp(60px,2.5vw,28px)] pb-[clamp(28px,4.5vw,56px)]" id="sales-hero">
+    <section className="relative max-[470px]:pt-6 overflow-hidden bg-gradient-to-b from-white to-[#FAFAFA] pt-[clamp(60px,2.5vw,28px)] pb-[clamp(28px,4.5vw,56px)]" id="sales-hero">
       <div
         aria-hidden="true"
         className="absolute -right-40 -top-40 w-[560px] h-[560px] rounded-full pointer-events-none blur-[10px] bg-[radial-gradient(circle,rgba(220,38,38,.16)_0%,rgba(220,38,38,.10)_55%,transparent_75%)]"
