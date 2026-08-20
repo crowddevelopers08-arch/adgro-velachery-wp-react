@@ -9,7 +9,7 @@ export default function SalesFooter() {
     <footer className="bg-black text-[#CFCFCF] pt-10 sm:pt-12 lg:pt-14 pb-[110px] min-[900px]:pb-12">
       <div className={`${container} grid grid-cols-1 min-[700px]:grid-cols-[1.3fr_1fr_1fr] gap-9`}>
         <div>
-          <img src="/ambatur-logo.jpg" alt="Advanced GroHair Velachery logo" className="h-[34px] mb-3.5" />
+          <img src="/ambatur-logo.jpg" alt="Advanced GroHair Velachery logo" className="h-[56px] mb-3.5" />
           <p className="text-[13.5px] text-[#A3A3A3] max-w-[280px] leading-[1.6]">
             Board-certified hair restoration, trusted across 60+ clinics in India. Individual
             results may vary — all treatment recommendations follow a specialist consultation.

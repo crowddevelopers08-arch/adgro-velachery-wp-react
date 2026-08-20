@@ -44,7 +44,6 @@ export default function LeadFormDetailed() {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
   async function onSubmit(e: FormEvent) {
@@ -72,7 +71,7 @@ export default function LeadFormDetailed() {
         }),
       });
       if (!res.ok) throw new Error('Request failed');
-      setSubmitted(true);
+      window.location.href = '/sales/thank-you';
     } catch {
       setError('Something went wrong. Please call us directly instead.');
     } finally {
@@ -93,8 +92,7 @@ export default function LeadFormDetailed() {
         </div>
 
         <div className="bg-white rounded-2xl p-[clamp(24px,4vw,44px)] shadow-[0_4px_20px_-8px_rgba(0,0,0,0.08)] border border-[#E8E8E8] max-w-[1100px] mx-auto">
-          {!submitted ? (
-            <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit}>
               <div className="grid grid-cols-1 min-[960px]:grid-cols-2 gap-7 min-[960px]:gap-10">
                 <div>
                   <div className={field}>
@@ -270,22 +268,6 @@ export default function LeadFormDetailed() {
                 </div>
               </div>
             </form>
-          ) : (
-            <div className="text-center px-2 py-5">
-              <svg className={`${icon} w-10 h-10 text-[#DC2626] mx-auto mb-2.5`}>
-                <use href="#sales-i-check" />
-              </svg>
-              <h4 className="text-lg font-extrabold text-[#111111] mb-1.5">Thank you — your request is in.</h4>
-              <p className="text-[#6B6B6B] text-sm">
-                A specialist from our Velachery center will call you back within 24 hours to walk
-                through your free hair analysis. Need to speak now?{' '}
-                <a href={`tel:${SALES_CONTACT.phoneTel}`} className="text-[#DC2626] font-bold">
-                  Call {SALES_CONTACT.phoneDisplay}
-                </a>
-                .
-              </p>
-            </div>
-          )}
         </div>
       </div>
     </section>

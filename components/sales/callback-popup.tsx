@@ -17,7 +17,6 @@ export default function CallbackPopup() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem(DISMISS_KEY)) return;
@@ -50,7 +49,7 @@ export default function CallbackPopup() {
         }),
       });
       sessionStorage.setItem(DISMISS_KEY, '1');
-      setSubmitted(true);
+      window.location.href = '/sales/thank-you';
     } catch {
       // Network hiccup — leave the popup open so the visitor can retry or just call.
     } finally {
@@ -82,9 +81,7 @@ export default function CallbackPopup() {
           </svg>
         </button>
 
-        {!submitted ? (
-          <>
-            <div className="flex items-center gap-2 mb-1.5">
+        <div className="flex items-center gap-2 mb-1.5">
               <svg className={`${icon} w-[18px] h-[18px] text-[#2B2B2B]`}>
                 <use href="#sales-i-phone" />
               </svg>
@@ -145,16 +142,6 @@ export default function CallbackPopup() {
                 Call {SALES_CONTACT.phoneDisplay}
               </a>
             </form>
-          </>
-        ) : (
-          <div className="text-center px-2 py-5">
-            <svg className={`${icon} w-10 h-10 text-[#DC2626] mx-auto mb-2.5`}>
-              <use href="#sales-i-check" />
-            </svg>
-            <h4 className="text-lg font-extrabold text-[#111111] mb-1.5">Got it — thank you!</h4>
-            <p className="text-[#6B6B6B] text-sm">We&rsquo;ll call {name.split(' ')[0]} back within 24 hours.</p>
-          </div>
-        )}
       </div>
     </div>
   );

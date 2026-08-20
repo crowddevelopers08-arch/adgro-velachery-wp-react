@@ -27,7 +27,6 @@ export default function SalesHero() {
   const [phone, setPhone] = useState('');
   const [concern, setConcern] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
   async function onSubmit(e: FormEvent) {
@@ -52,7 +51,7 @@ export default function SalesHero() {
         }),
       });
       if (!res.ok) throw new Error('Request failed');
-      setSubmitted(true);
+      window.location.href = '/sales/thank-you';
     } catch {
       setError('Something went wrong. Please call us directly instead.');
     } finally {
@@ -137,7 +136,7 @@ export default function SalesHero() {
               </svg>
               Call Now {SALES_CONTACT.phoneDisplay}
             </a>
-            <a href="#hero-form" className={`${btnBase} ${btnPrimary} text-sm px-5 py-2.5`}>
+            <a href="#lead-form" className={`${btnBase} ${btnPrimary} text-sm px-5 py-2.5`}>
               <svg className={icon}>
                 <use href="#sales-i-calendar" />
               </svg>
@@ -146,9 +145,8 @@ export default function SalesHero() {
           </div>
         </div>
 
-        <div className="bg-white text-[#1A1A1A] rounded-3xl p-[clamp(20px,2.5vw,28px)] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.22)] border border-[#E8E8E8] max-w-[540px] mx-auto w-full" id="hero-form">
-          {!submitted ? (
-            <form onSubmit={onSubmit}>
+        <div className="hidden sm:block bg-white text-[#1A1A1A] rounded-3xl p-[clamp(20px,2.5vw,28px)] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.22)] border border-[#E8E8E8] max-w-[540px] mx-auto w-full" id="hero-form">
+          <form onSubmit={onSubmit}>
               <div className="mb-3.5">
                 <h3 className="text-[20px] font-extrabold text-[#111111]">Get Your Free Hair Analysis</h3>
                 <p className="text-[#6B6B6B] text-[13.5px] mt-1">
@@ -239,21 +237,6 @@ export default function SalesHero() {
                 Your information stays private and is never shared.
               </p>
             </form>
-          ) : (
-            <div className="text-center px-2 py-5">
-              <svg className={`${icon} w-10 h-10 text-[#DC2626] mx-auto mb-2.5`}>
-                <use href="#sales-i-check" />
-              </svg>
-              <h4 className="text-lg font-extrabold text-[#111111] mb-1.5">Thank you — we&rsquo;ve got it.</h4>
-              <p className="text-[#6B6B6B] text-sm">
-                A specialist from our Velachery center will call you back within 24 hours. In a hurry?{' '}
-                <a href={`tel:${SALES_CONTACT.phoneTel}`} className="text-[#DC2626] font-semibold">
-                  Call {SALES_CONTACT.phoneDisplay} now
-                </a>
-                .
-              </p>
-            </div>
-          )}
         </div>
 
         <div className="flex flex-col gap-3">
