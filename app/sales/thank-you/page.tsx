@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { plusJakartaSans } from '@/components/sales/fonts';
 import IconSprite from '@/components/sales/icon-sprite';
 import { SALES_CONTACT } from '@/components/sales/constants';
 import { icon } from '@/components/sales/classnames';
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function SalesThankYouPage() {
   return (
-    <div className={`${plusJakartaSans.className} bg-[#FAFAFA] text-[#1A1A1A] antialiased min-h-screen flex items-center justify-center px-4 py-10`}>
+    <div className="bg-[#FAFAFA] min-h-screen flex items-center justify-center px-4 py-10">
       <IconSprite />
 
       <div className="w-full max-w-[520px] bg-white rounded-3xl border border-[#E8E8E8] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.22)] p-[clamp(28px,5vw,44px)] text-center">

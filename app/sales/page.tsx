@@ -1,5 +1,3 @@
-import type { Metadata } from 'next';
-import { plusJakartaSans } from '@/components/sales/fonts';
 import IconSprite from '@/components/sales/icon-sprite';
 import SmoothScroll from '@/components/sales/smooth-scroll';
 import SalesHeader from '@/components/sales/sales-header';
@@ -19,21 +17,9 @@ import SalesFooter from '@/components/sales/sales-footer';
 import StickyCallBar from '@/components/sales/sticky-call-bar';
 import CallbackPopup from '@/components/sales/callback-popup';
 
-export const metadata: Metadata = {
-  title: "Advanced GroHair Velachery | Chennai's Trusted Hair Restoration Clinic",
-  description:
-    'Board-certified doctors, FDA-approved technology and 2,000+ successful transformations across 60+ clinics in India. Book a free hair consultation at our Velachery, Chennai center.',
-  openGraph: {
-    title: "Advanced GroHair Velachery | Chennai's Trusted Hair Restoration Clinic",
-    description:
-      'Board-certified doctors, FDA-approved technology and 2,000+ documented transformations. Free consultation at our Velachery, Chennai center.',
-    type: 'website',
-  },
-};
-
 export default function SalesPage() {
   return (
-    <div className={`${plusJakartaSans.className} bg-[#FAFAFA] text-[#1A1A1A] antialiased leading-relaxed [&_*]:box-border`}>
+    <div className="bg-[#FAFAFA] leading-relaxed [&_*]:box-border">
       <IconSprite />
       <SmoothScroll />
       <SalesHeader />
