@@ -19,7 +19,7 @@ export default function SalesLayout({ children }: { children: React.ReactNode })
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager */}
+        {/* Google Tag Manager - Updated */}
         <Script
           id="gtm-script"
           strategy="afterInteractive"
@@ -29,7 +29,7 @@ export default function SalesLayout({ children }: { children: React.ReactNode })
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-5HMF28K9');
+              })(window,document,'script','dataLayer','GTM-W3BNH276');
             `,
           }}
         />
@@ -51,12 +51,24 @@ export default function SalesLayout({ children }: { children: React.ReactNode })
             `,
           }}
         />
+
+        {/* OpenAI Pixel */}
+        <Script
+          id="openai-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+              oaiq("init",{pixelId:"5my3eYc3MpSCrJNzJ2NQs6",debug:true});
+            `,
+          }}
+        />
       </head>
       <body>
-        {/* Google Tag Manager (noscript) */}
+        {/* Google Tag Manager (noscript) - Updated */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-5HMF28K9"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-W3BNH276"
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
@@ -70,5 +82,3 @@ export default function SalesLayout({ children }: { children: React.ReactNode })
     </html>
   );
 }
-
-// hiu
