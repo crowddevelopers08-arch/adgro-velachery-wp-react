@@ -1,7 +1,7 @@
 /**
  * Conversation flow + branding for the Advanced GroHair Velachery chatbot.
- * UI/UX mechanics replicated from the reference Collect.chat-style widget;
- * content rebranded for this clinic's own treatments and single Velachery location.
+ * Questions mirror the Bonitaa Tambaram chatbot (Hair/Skin → concerns → contact
+ * details → clinic visit), rebranded for this clinic's single Velachery location.
  */
 
 export type Condition = { val: string; next: string };
@@ -51,101 +51,112 @@ export const locale = {
 };
 
 const WELCOME = 'welcome';
+const CONCERN_TYPE = 'concernType';
+const TREATMENTS = 'treatments';
 const NAME = 'name';
-const CONCERN = 'concern';
-const STAGE = 'stage';
-const PIN = 'pin';
-const VISIT = 'visit';
 const PHONE = 'phone';
+const EMAIL = 'email';
+const CITY = 'city';
+const VISIT = 'visit';
 const THANKYOU = 'thankyou';
 
-/** Kept identical to the treatment list already used by the site's contact form & dashboard. */
-export const CONCERN_OPTIONS = [
-  'Hair Loss',
-  'Alopecia Areata',
-  'Dandruff',
-  'Baldness',
-  'Hair Thinning Treatment',
-  'Receding Hair Solutions',
-  'Genetic Hair Loss',
+const CONCERN_TYPE_OPTIONS = ['Hair', 'Skin'];
+
+export const HAIR_CONCERNS = ['Hair Loss', 'Hair Thinning', 'Dandruff', 'Alopecia', 'Receding Hairline'];
+
+export const SKIN_CONCERNS = [
+  'Acne',
+  'Pigmentation',
+  'Dullness',
+  'Tanning',
+  'Uneven Skin Tone',
+  'Open Pores',
 ];
 
-const STAGE_OPTIONS = [
-  'Just Starting / Thinning',
-  'Receding Hairline',
-  'Bald Patches',
-  'Extensive Hair Loss',
-  'Not Sure',
-];
+/** Every concern the bot can capture — also drives the dashboard's treatment filter. */
+export const CONCERN_OPTIONS = [...HAIR_CONCERNS, ...SKIN_CONCERNS];
 
-const VISIT_OPTIONS = ['Yes, I can visit the clinic', 'Prefer a phone consultation first'];
+const VISIT_OPTIONS = ['Yes, I can visit the clinic', 'Prefer a call first'];
 
 export const questions: Question[] = [
   {
     id: WELCOME,
     type: 'statement',
     label:
-      '<p>Hi👋 Welcome to <strong>Advanced GroHair Velachery</strong>!</p><p></p><p>We help you achieve natural, permanent hair restoration with expert-led FUE hair transplant &amp; growth therapy✨</p>',
+      '<p>Hi! Welcome to <strong>Advanced GroHair Velachery</strong>.</p><p>Let me ask a few quick questions so our team can help you better.</p>',
+  },
+  {
+    id: CONCERN_TYPE,
+    type: 'option',
+    field: 'concernType',
+    label:
+      '<p>What would you like to consult us for today?</p><p>Please choose whether your concern is related to <strong>Hair</strong> or <strong>Skin</strong>.</p>',
+    options: CONCERN_TYPE_OPTIONS,
+    conditions: CONCERN_TYPE_OPTIONS.map((val) => ({ val, next: TREATMENTS })),
+  },
+  {
+    // Options are narrowed to the Hair or Skin list at render time (see concernOptionsFor).
+    id: TREATMENTS,
+    type: 'multioption',
+    field: 'concerns',
+    label: '<p>Please select your concern.</p>',
+    options: CONCERN_OPTIONS,
   },
   {
     id: NAME,
     type: 'text',
     field: 'name',
-    label: '<p>May I know your <strong>name</strong>, please?</p>',
-  },
-  {
-    id: CONCERN,
-    type: 'multioption',
-    field: 'concerns',
-    label: '<p>What is your <strong>primary hair concern</strong>?</p>',
-    options: CONCERN_OPTIONS,
-  },
-  {
-    id: STAGE,
-    type: 'option',
-    field: 'hairLossStage',
-    label: '<p>Which <strong>stage</strong> best describes your hair loss?</p>',
-    options: STAGE_OPTIONS,
-    conditions: STAGE_OPTIONS.map((val) => ({ val, next: PIN })),
-  },
-  {
-    id: PIN,
-    type: 'number',
-    field: 'city',
-    label: '<p>What is your area <strong>PIN code</strong>?</p>',
-    errormsg: 'Please enter a valid 6-digit PIN code',
-    min: 6,
-    max: 6,
-  },
-  {
-    id: VISIT,
-    type: 'option',
-    field: 'willingToVisit',
-    label: '<p>Are you willing to <strong>visit our Velachery clinic</strong> for a consultation?</p>',
-    options: VISIT_OPTIONS,
-    conditions: VISIT_OPTIONS.map((val) => ({ val, next: PHONE })),
+    label: '<p>May I know your <strong>name</strong>?</p>',
   },
   {
     id: PHONE,
     type: 'number',
     field: 'phone',
-    label: '<p>Great, please share your <strong>phone number</strong> so our specialist can call you</p>',
+    label: '<p>Please share your <strong>phone number</strong> so our team can contact you.</p>',
     errormsg: 'Please enter a valid phone number',
     min: 10,
     max: 14,
-    next: THANKYOU,
+  },
+  {
+    id: EMAIL,
+    type: 'text',
+    field: 'email',
+    label:
+      '<p>Please share your <strong>email address</strong> so we can send consultation details if needed.</p>',
+  },
+  {
+    id: CITY,
+    type: 'text',
+    field: 'city',
+    label: '<p>Please share your <strong>Current Location</strong>.</p>',
+  },
+  {
+    id: VISIT,
+    type: 'option',
+    field: 'willingToVisit',
+    label: '<p>Would you be comfortable visiting our Velachery clinic for a consultation?</p>',
+    options: VISIT_OPTIONS,
+    conditions: VISIT_OPTIONS.map((val) => ({ val, next: THANKYOU })),
   },
   {
     id: THANKYOU,
     type: 'thankyou',
-    label:
-      '<p>Thank you😊 Our hair specialist will contact you shortly to schedule your <strong>free consultation</strong>!</p>',
+    label: '<p>Thank you. Our team will contact you shortly.</p>',
   },
 ];
 
 export const questionById = new Map(questions.map((q) => [q.id, q]));
 
-export const PHONE_QUESTION_ID = PHONE;
+/** The lead is submitted once this last question is answered. */
+export const SUBMIT_QUESTION_ID = VISIT;
+
+export const THANK_YOU_PATH = '/chatbot/thank-you';
+
+/** The concern step only lists the Hair or Skin concerns, depending on the earlier answer. */
+export function concernOptionsFor(question: Question, concernType: string): string[] {
+  if (question.id === TREATMENTS) return concernType === 'Skin' ? SKIN_CONCERNS : HAIR_CONCERNS;
+  return question.type === 'multioption' ? question.options : [];
+}
 
 /** The bot walks the array in order unless a question declares an explicit next. */
 export function nextQuestionId(id: string): string | undefined {

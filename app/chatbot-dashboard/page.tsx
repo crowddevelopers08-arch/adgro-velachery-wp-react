@@ -55,12 +55,13 @@ interface Lead {
   email: string;
   treatment?: string;
   procedure?: string; // Alias for treatment
-  city?: string; // PIN Code
+  city?: string; // Location
   consent: boolean;
   source?: string;
   formName?: string;
   pageUrl?: string;
   userAgent?: string;
+  message?: string; // Concern type, concerns & clinic-visit answer
   status: string;
   telecrmSynced?: boolean;
   telecrmId?: string;
@@ -303,7 +304,7 @@ export default function ChatbotLeadsDashboard({
 
   const exportToCSV = () => {
     const headers = [
-      "Name", "Phone", "Email", "Concern", "PIN Code",
+      "Name", "Phone", "Email", "Concern", "Chatbot Answers", "Location",
       "Status", "Form Name", "Source", "Page URL", "Created At", "TeleCRM Synced"
     ];
 
@@ -312,6 +313,7 @@ export default function ChatbotLeadsDashboard({
       l.phone ?? "",
       l.email ?? "",
       l.treatment || l.procedure || "",
+      l.message ?? "",
       l.city ?? "",
       dbToUIStatus(l.status).toUpperCase(),
       l.formName ?? "",
@@ -570,10 +572,13 @@ export default function ChatbotLeadsDashboard({
                             <span className="dark:text-gray-300">{lead.treatment}</span>
                           </div>
                         )}
+                        {lead.message && (
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{lead.message}</div>
+                        )}
                         {lead.city && (
                           <div className="flex items-center gap-2">
                             <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                            <span className="dark:text-gray-300">PIN: {lead.city}</span>
+                            <span className="dark:text-gray-300">{lead.city}</span>
                           </div>
                         )}
                         <div className="flex items-center gap-2">
@@ -681,7 +686,7 @@ export default function ChatbotLeadsDashboard({
                     </th>
                     <th className="px-4 py-3 text-left min-w-[160px] dark:text-gray-300">Contact</th>
                     <th className="px-4 py-3 text-left min-w-[180px] dark:text-gray-300">Concern</th>
-                    <th className="px-4 py-3 text-left min-w-[100px] dark:text-gray-300">PIN Code</th>
+                    <th className="px-4 py-3 text-left min-w-[100px] dark:text-gray-300">Location</th>
                     <th className="px-4 py-3 text-left min-w-[100px] dark:text-gray-300">Sync</th>
                     <th className="px-4 py-3 text-left min-w-[100px] dark:text-gray-300">Status</th>
                     <th
@@ -746,6 +751,9 @@ export default function ChatbotLeadsDashboard({
                             </td>
                             <td className="px-4 py-3">
                               <span className="dark:text-gray-300">{treatment || "-"}</span>
+                              {lead.message && (
+                                <div className="mt-1 text-xs text-gray-500 dark:text-gray-400">{lead.message}</div>
+                              )}
                             </td>
                             <td className="px-4 py-3">
                               <span className="dark:text-gray-300">{lead.city || "-"}</span>

@@ -1,13 +1,16 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   branding,
+  concernOptionsFor,
   locale,
   nextQuestionId,
   questionById,
   questions,
-  PHONE_QUESTION_ID,
+  SUBMIT_QUESTION_ID,
+  THANK_YOU_PATH,
   type Question,
 } from './bot-config';
 
@@ -49,9 +52,15 @@ export default function ChatBot() {
   const [error, setError] = useState(false);
   const [now, setNow] = useState(() => Date.now());
 
+  const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
   const formDataRef = useRef<Record<string, string | string[]>>({});
+  const submittedRef = useRef(false);
   const current = questionById.get(currentId) as Question;
+
+  useEffect(() => {
+    router.prefetch(THANK_YOU_PATH);
+  }, [router]);
 
   // Reveal the active question after a typing pause, the way the widget does.
   useEffect(() => {
@@ -91,31 +100,39 @@ export default function ChatBot() {
     return () => clearInterval(id);
   }, []);
 
-  /** Sends the completed conversation to the DB + TeleCRM once the phone number is captured. */
-  const submitLead = useCallback((phone: string) => {
+  /** Sends the completed conversation to the DB + TeleCRM, then moves to the thank-you page. */
+  const submitLead = useCallback(async () => {
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+
     const data = formDataRef.current;
     const payload = {
       name: (data.name as string) || '',
-      phone,
-      concerns: Array.isArray(data.concerns) ? data.concerns : [],
-      hairLossStage: (data.hairLossStage as string) || '',
+      email: (data.email as string) || '',
+      phone: (data.phone as string) || '',
       city: (data.city as string) || '',
+      concernType: (data.concernType as string) || '',
+      concerns: Array.isArray(data.concerns) ? data.concerns : [],
       willingToVisit: (data.willingToVisit as string) || '',
       consent: true,
       source: 'Adgro Hair Velachery Chatbot',
       formName: 'Adgro Chatbot',
-      pageUrl: typeof window !== 'undefined' ? window.location.href : '',
-      userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : '',
+      pageUrl: window.location.href,
+      userAgent: window.navigator.userAgent,
     };
 
-    fetch('/api/chatbot-leads', {
+    const request = fetch('/api/chatbot-leads', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     }).catch((err) => {
       console.error('Chatbot lead submission failed:', err);
     });
-  }, []);
+
+    // Leave the thank-you bubble on screen briefly before redirecting.
+    await Promise.all([request, new Promise((resolve) => setTimeout(resolve, 2200))]);
+    router.push(THANK_YOU_PATH);
+  }, [router]);
 
   const answer = useCallback(
     (text: string, next: string | undefined, rawValue?: string | string[]) => {
@@ -143,15 +160,25 @@ export default function ChatBot() {
       }
     }
 
-    if (current.id === PHONE_QUESTION_ID) {
-      submitLead(value);
-    }
-
     answer(value, nextQuestionId(current.id));
+  }
+
+  function chooseOption(option: string) {
+    if (current.type !== 'option') return;
+    if (current.id === SUBMIT_QUESTION_ID) {
+      formDataRef.current[current.field] = option;
+      submitLead();
+    }
+    answer(
+      option,
+      current.conditions.find((c) => c.val === option)?.next ?? nextQuestionId(current.id),
+      option,
+    );
   }
 
   function restart() {
     formDataRef.current = {};
+    submittedRef.current = false;
     setEntries([]);
     setCurrentId(questions[0].id);
   }
@@ -163,7 +190,9 @@ export default function ChatBot() {
     [entries, currentId],
   );
 
-  const avatarStyle = { backgroundImage: `url(${branding.avatar})` };
+  const multiOptions = concernOptionsFor(current, (formDataRef.current.concernType as string) || '');
+
+  const avatarStyle ={ backgroundImage: `url(${branding.avatar})` };
   const richTextClass =
     '[&_p]:my-2.5 [&_p:first-child]:mt-0 [&_p:last-child]:mb-0 [&_p:empty]:h-5 [&_strong]:font-bold';
 
@@ -267,14 +296,7 @@ export default function ChatBot() {
                           key={option}
                           role="button"
                           tabIndex={0}
-                          onClick={() =>
-                            answer(
-                              option,
-                              current.conditions.find((c) => c.val === option)?.next ??
-                                nextQuestionId(current.id),
-                              option,
-                            )
-                          }
+                          onClick={() => chooseOption(option)}
                           className="relative m-[5px] inline-block cursor-pointer rounded-[1.3em] border border-[#dc2626] bg-white py-2.5 pr-3.5 pl-8 text-[15.5px] leading-5 text-[#180109]"
                         >
                           <span className="absolute top-[15px] left-3 h-3 w-3 rounded-full bg-[#e1e1e1]" />
@@ -288,7 +310,7 @@ export default function ChatBot() {
                   {isLive && current.type === 'multioption' && (
                     <div>
                       <div className="mt-[5px]">
-                        {current.options.map((option) => {
+                        {multiOptions.map((option) => {
                           const on = checked.includes(option);
                           return (
                             <label

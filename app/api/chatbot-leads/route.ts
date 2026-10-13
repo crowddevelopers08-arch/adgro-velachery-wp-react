@@ -9,9 +9,10 @@ const FORM_NAME = 'Adgro Chatbot'
 interface ChatbotLeadData {
   name: string
   phone: string
+  email?: string
+  concernType?: string // Hair / Skin
   concerns?: string[]
-  hairLossStage?: string
-  city?: string // PIN code
+  city?: string // current location
   willingToVisit?: string
   consent?: boolean
   source?: string
@@ -28,15 +29,16 @@ function generateFormDataString(leadData: ChatbotLeadData): string {
 
   if (leadData.name) details.push(`Name: ${leadData.name}`);
   if (leadData.phone) details.push(`Phone: ${leadData.phone}`);
+  if (leadData.email) details.push(`Email: ${leadData.email}`);
+  if (leadData.concernType) details.push(`Concern Type: ${leadData.concernType}`);
 
   if (leadData.concerns && leadData.concerns.length > 0) {
     details.push(`Concerns: ${leadData.concerns.join(', ')}`);
   }
 
-  if (leadData.hairLossStage) details.push(`Hair Loss Stage: ${leadData.hairLossStage}`);
   if (leadData.willingToVisit) details.push(`Willing To Visit Adgro Velachery: ${leadData.willingToVisit}`);
 
-  if (leadData.city) details.push(`PIN Code: ${leadData.city}`);
+  if (leadData.city) details.push(`Location: ${leadData.city}`);
   if (leadData.source) details.push(`Source: ${leadData.source}`);
   if (leadData.pageUrl) details.push(`Page URL: ${leadData.pageUrl}`);
 
@@ -46,22 +48,30 @@ function generateFormDataString(leadData: ChatbotLeadData): string {
 }
 
 /**
+ * Answers that have no dedicated column — stored in the lead's message (DB) and message field (TeleCRM)
+ */
+function generateChatbotMessage(leadData: ChatbotLeadData): string {
+  return [
+    leadData.concernType ? `Concern Type: ${leadData.concernType}` : '',
+    leadData.concerns?.length ? `Concerns: ${leadData.concerns.join(', ')}` : '',
+    leadData.willingToVisit ? `Willing To Visit Adgro Velachery: ${leadData.willingToVisit}` : '',
+  ]
+    .filter(Boolean)
+    .join(' | ');
+}
+
+/**
  * Save chatbot lead to database using Prisma
  */
 async function saveToDatabase(leadData: ChatbotLeadData) {
   try {
-    const structuredMessage = [
-      leadData.hairLossStage ? `Hair Loss Stage: ${leadData.hairLossStage}` : '',
-      leadData.willingToVisit ? `Willing To Visit Adgro Velachery: ${leadData.willingToVisit}` : '',
-    ]
-      .filter(Boolean)
-      .join(' | ');
+    const structuredMessage = generateChatbotMessage(leadData);
 
     const lead = await prisma.lead.create({
       data: {
         name: leadData.name,
         phone: leadData.phone,
-        email: '',
+        email: leadData.email || '',
         procedure: leadData.concerns?.join(', ') || '',
         message: structuredMessage,
         city: leadData.city || '',
@@ -125,10 +135,10 @@ async function sendToTeleCRM(leadData: ChatbotLeadData) {
       fields: {
         Id: "",
         name: leadData.name,
-        email: "",
+        email: leadData.email || "",
         phone: leadData.phone.replace(/\D/g, ''),
         city_1: leadData.city || "",
-        message: "",
+        message: generateChatbotMessage(leadData),
         select_the_procedure: concernsText,
         Country: "",
         LeadID: "",
@@ -167,11 +177,11 @@ async function sendToTeleCRM(leadData: ChatbotLeadData) {
         },
         {
           "type": "SYSTEM_NOTE",
-          "text": `Concerns: ${concernsText}`
+          "text": `Concern Type: ${leadData.concernType || 'Not specified'}`
         },
         {
           "type": "SYSTEM_NOTE",
-          "text": `Hair Loss Stage: ${leadData.hairLossStage || 'Not specified'}`
+          "text": `Concerns: ${concernsText}`
         },
         {
           "type": "SYSTEM_NOTE",
@@ -179,7 +189,11 @@ async function sendToTeleCRM(leadData: ChatbotLeadData) {
         },
         {
           "type": "SYSTEM_NOTE",
-          "text": `PIN Code: ${leadData.city || 'Not specified'}`
+          "text": `Location: ${leadData.city || 'Not specified'}`
+        },
+        {
+          "type": "SYSTEM_NOTE",
+          "text": `Email: ${leadData.email || 'Not specified'}`
         },
         {
           "type": "SYSTEM_NOTE",
@@ -334,6 +348,7 @@ export async function GET(request: Request) {
         formName: true,
         pageUrl: true,
         userAgent: true,
+        message: true,
         status: true,
         telecrmSynced: true,
         telecrmId: true,
@@ -532,12 +547,9 @@ export async function POST(request: Request) {
           data: {
             name: data.name,
             phone: data.phone,
-            email: '',
+            email: data.email || '',
             procedure: data.concerns?.join(', ') || '',
-            message: [
-              data.hairLossStage ? `Hair Loss Stage: ${data.hairLossStage}` : '',
-              data.willingToVisit ? `Willing To Visit Adgro Velachery: ${data.willingToVisit}` : '',
-            ].filter(Boolean).join(' | '),
+            message: generateChatbotMessage(data),
             city: data.city || '',
             source: data.source || 'Adgro Hair Velachery Chatbot',
             formName: FORM_NAME,
