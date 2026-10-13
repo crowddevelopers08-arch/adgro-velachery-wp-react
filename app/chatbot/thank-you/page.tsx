@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { branding } from '@/components/chatbot/bot-config';
 import { SALES_CONTACT } from '@/components/sales/constants';
 
@@ -11,6 +12,29 @@ export const metadata: Metadata = {
 export default function ChatbotThankYouPage() {
   return (
     <>
+      {/* Meta Pixel conversion. The pixel itself is loaded via GTM, which can arrive after
+          this script runs, so wait for fbq (up to ~10s) and fire the event only once. */}
+      <Script
+        id="meta-submit-application"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function () {
+              var tries = 0;
+              (function track() {
+                if (window.__chatbotSubmitTracked) return;
+                if (typeof window.fbq === 'function') {
+                  window.__chatbotSubmitTracked = true;
+                  fbq('track', 'SubmitApplication');
+                } else if (tries++ < 20) {
+                  setTimeout(track, 500);
+                }
+              })();
+            })();
+          `,
+        }}
+      />
+
       {/* same flat colour fill as the chatbot page */}
       <div className="fixed inset-0 z-0 h-full w-full bg-[#fceaea]" />
 
